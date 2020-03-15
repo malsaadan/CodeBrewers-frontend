@@ -1,6 +1,6 @@
 import React from "react";
 import MenuItem from "../menuItem/MenuItem";
-import { getAllMenuItems } from "../api";
+import { getAllMenuItems } from "../menuItem/api";
 // import { MenuItem } from "react-bootstrap";
 
 class MenuItemContainer extends React.Component {
@@ -50,6 +50,7 @@ class MenuItemContainer extends React.Component {
     let allMenuItemss = <h4>No items!</h4>;
 
     if (this.props.menuItems.length > 0) {
+      console.log("length");
       allMenuItemss = this.props.menuItems.map((menuItem, index) => {
         return (
           <MenuItem
@@ -70,7 +71,8 @@ class MenuItemContainer extends React.Component {
     return (
       <>
         <h3>All Articles</h3>
-        {allArticles}
+        {allMenuItemss}
+        <p>test p</p>
       </>
     );
   }

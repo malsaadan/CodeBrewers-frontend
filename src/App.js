@@ -9,6 +9,7 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
+import MenuItemContainer from "./menuItem/MenuContainer";
 
 class App extends Component {
   constructor() {
@@ -16,7 +17,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      menuItems: []
     };
   }
 
@@ -26,6 +28,10 @@ class App extends Component {
 
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] });
+  };
+
+  setMenuItems = menuItems => {
+    this.setState({ menuItems: menuItems });
   };
 
   render() {
@@ -67,6 +73,11 @@ class App extends Component {
             render={() => <ChangePassword alert={this.alert} user={user} />}
           />
         </main>
+
+        <MenuItemContainer
+          menuItems={this.state.menuItems}
+          setMenuItems={this.setMenuItems}
+        />
       </React.Fragment>
     );
   }

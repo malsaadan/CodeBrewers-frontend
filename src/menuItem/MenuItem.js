@@ -15,26 +15,13 @@ class MenuItem extends Component {
       <div>
         {/* title & content & Author */}
         <h2>{this.props.name}</h2>
-        <sub>{this.props.de}</sub>
-        <p>{this.props.content}</p>
-        <a href="#" onClick={this.deleteArticle}>
+        <sub>{this.props.description}</sub>
+        <p>{this.props.price}</p>
+        {/* <a href="#" onClick={this.deleteArticle}>
           DELETE
-        </a>
+        </a> */}
         <br />
-        <button onClick={this.addArticles}> Add</button>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name:
-              <input
-                type="text"
-                // value={this.state.value}
-                // onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+        {/* <button onClick={this.addArticles}> Add</button> */}
       </div>
     );
   }
