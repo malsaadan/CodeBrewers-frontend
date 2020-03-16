@@ -9,7 +9,7 @@ export const getAllMenuItems = () => {
 };
 
 // Add Menu Item
-export const addMenuItem = menuItem => {
+export const addNewMenuItem = menuItem => {
   // return a promise
   return axios.post(`${apiUrl}/api/menu-items`, { menuItem });
 };

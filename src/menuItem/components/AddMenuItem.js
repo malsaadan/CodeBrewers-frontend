@@ -1,7 +1,7 @@
 import React from "react";
 
 export class AddMenuItem extends React.Component {
-  // add constructor to hold the menu items
+  // add constructor
   constructor(props) {
     super(props);
 
@@ -14,9 +14,9 @@ export class AddMenuItem extends React.Component {
     };
   }
 
-  // A function to pass the new menu item to the parent
+  // A function to pass the new menu item to the parent component
   addMenuItem = () => {
-    // Creating an object with the state values
+    // add an object with that holds the state values
     const menuItem = {
       name: this.state.name,
       description: this.state.description,
@@ -25,7 +25,7 @@ export class AddMenuItem extends React.Component {
       category: this.state.category
     };
 
-    // Clearing text boxes
+    // reset text boxes values
     this.setState({
       name: "",
       description: "",
@@ -33,11 +33,15 @@ export class AddMenuItem extends React.Component {
       picture: "",
       category: ""
     });
+
+    // Pass the menu item object to the parent
+    this.props.addMenuItem(menuItem);
   };
 
-  // Handle the input boxes' values
+  // add Handler the input boxes' values
   handleInputBox = event => {
     const input = event.target;
+    console.log(event);
 
     // If conditions to know which input value has been changed based on class names and set new value in the state
     if (input.className === "name") {

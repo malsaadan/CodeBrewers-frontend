@@ -4,7 +4,9 @@ import { Route } from "react-router-dom";
 // import MenuContainer from "./menuItem/components2/MenuContainer";
 
 // add the grid from Material UI
-import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
 import Header from "./header/Header";
@@ -14,7 +16,18 @@ import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
 import MenuItemContainer from "./menuItem/components/MenuContainer";
-import MenuCont from "./menuItem/components/MenuCont";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  }
+}));
+
 class App extends Component {
   constructor() {
     super();
@@ -82,18 +95,22 @@ class App extends Component {
 
         <div>
           <Grid container direction="column">
-            <Grid item container>
-              <Grid item xs={0} sm={2} />
-              <Grid item xs={12} sm={5}>
-                <h1> This is where the orders will be</h1>
+            <Grid item container spacing={1}>
+              <Grid item xs={2} sm={1} />
+              <Grid item xs={11} sm={4}>
+                <Paper>
+                  <h1> This is where the orders will be</h1>
+                </Paper>
               </Grid>
-              <Grid item xs={12} sm={5}>
-                <MenuItemContainer
-                  menuItems={this.state.menuItems}
-                  setMenuItems={this.setMenuItems}
-                />
+              <Grid item xs={11} sm={6}>
+                <Paper>
+                  <MenuItemContainer
+                    menuItems={this.state.menuItems}
+                    setMenuItems={this.setMenuItems}
+                  />
+                </Paper>
               </Grid>
-              <Grid item xs={0} sm={2} />
+              <Grid item xs={1} sm={1} />
             </Grid>
           </Grid>
         </div>

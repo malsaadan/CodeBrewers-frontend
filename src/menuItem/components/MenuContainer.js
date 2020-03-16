@@ -1,9 +1,11 @@
 import React from "react";
 import MenuItem from "../components/MenuItem";
-import { getAllMenuItems, addMenuItem } from "../api";
+import { getAllMenuItems, addNewMenuItem } from "../api";
 import { Grid } from "@material-ui/core";
 // import { MenuItem } from "react-bootstrap";
-import MenuItemj from "../components/MenuItemj";
+
+// import add menu Item
+import AddMenuItem from "./AddMenuItem";
 class MenuItemContainer extends React.Component {
   componentDidMount() {
     getAllMenuItems()
@@ -14,18 +16,16 @@ class MenuItemContainer extends React.Component {
         console.log("API ERROR:", error);
       });
   }
-  // Make an aPI call to add
-  addNewMenuItem = menuItem => {
+  // Make an API call to add function
+  addMenuItem = menuItem => {
     // Make an axios request
-    addMenuItem(menuItem)
+    addNewMenuItem(menuItem)
       .then(response => {
         console.log(`The item ${menuItem.name} has been added successfully.`);
 
-        // If the request was successful then add the new Menu Item to
-
         // Save the array that was passed as props in a variable
         const menuItems = this.props.menuItems;
-        // push the new item to the end of the menuItems array
+        // add/push the new item to the the menuItems array
         menuItems.push(menuItem);
         // Update the array in the parent state
         this.props.setMenuItems(menuItems);
@@ -96,6 +96,7 @@ class MenuItemContainer extends React.Component {
 
     return (
       <>
+        <AddMenuItem addMenuItem={this.addMenuItem} />
         <h3>All Articles</h3>
         {allMenuItems}
         <p>test p</p>
