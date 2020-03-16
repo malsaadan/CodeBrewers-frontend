@@ -2,6 +2,8 @@ import React from "react";
 import MenuItem from "../components/MenuItem";
 import { getAllMenuItems, addNewMenuItem } from "../api";
 import { Grid } from "@material-ui/core";
+
+import "./MenuItem.css";
 // import { MenuItem } from "react-bootstrap";
 
 // import add menu Item
@@ -84,7 +86,7 @@ class MenuItemContainer extends React.Component {
     }
 
     return (
-      <>
+      <div className="menuCont">
         <AddMenuItem addMenuItem={this.addMenuItem} />
         <h3>All Articles</h3>
         <Grid container spacing={1}>
@@ -93,7 +95,7 @@ class MenuItemContainer extends React.Component {
         {/* <Button color="secondary" variant="outlined" className="btnMI">
           This is a test for using the famous library Material UI{" "}
         </Button> */}
-      </>
+      </div>
     );
   }
 }
