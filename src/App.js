@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import "./App.scss";
 import { Route } from "react-router-dom";
+// import MenuContainer from "./menuItem/components2/MenuContainer";
+
+// add the grid from Material UI
+import { Grid } from "@material-ui/core";
 
 import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
 import Header from "./header/Header";
@@ -9,8 +13,8 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-import MenuItemContainer from "./menuItem/MenuContainer";
-
+import MenuItemContainer from "./menuItem/components/MenuContainer";
+import MenuCont from "./menuItem/components/MenuCont";
 class App extends Component {
   constructor() {
     super();
@@ -73,11 +77,26 @@ class App extends Component {
             render={() => <ChangePassword alert={this.alert} user={user} />}
           />
         </main>
+        {/* <MenuCont></MenuCont> */}
+        {/* ######## The Content of the Page #############files // add the grid  to the page */}
 
-        <MenuItemContainer
-          menuItems={this.state.menuItems}
-          setMenuItems={this.setMenuItems}
-        />
+        <div>
+          <Grid container direction="column">
+            <Grid item container>
+              <Grid item xs={0} sm={2} />
+              <Grid item xs={12} sm={5}>
+                <h1> This is where the orders will be</h1>
+              </Grid>
+              <Grid item xs={12} sm={5}>
+                <MenuItemContainer
+                  menuItems={this.state.menuItems}
+                  setMenuItems={this.setMenuItems}
+                />
+              </Grid>
+              <Grid item xs={0} sm={2} />
+            </Grid>
+          </Grid>
+        </div>
       </React.Fragment>
     );
   }

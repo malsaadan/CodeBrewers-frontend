@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import CoffeeCard from "./CoffeeCard";
 
 class MenuItem extends Component {
   //   deleteArticle = event => {
@@ -12,7 +13,7 @@ class MenuItem extends Component {
   //   };
   render() {
     return (
-      <div>
+      <>
         {/* title & content & Author */}
         <h2>{this.props.name}</h2>
         <sub>{this.props.description}</sub>
@@ -20,9 +21,9 @@ class MenuItem extends Component {
         {/* <a href="#" onClick={this.deleteArticle}>
           DELETE
         </a> */}
-        <br />
+
         {/* <button onClick={this.addArticles}> Add</button> */}
-      </div>
+      </>
     );
   }
 }

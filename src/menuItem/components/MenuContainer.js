@@ -1,6 +1,8 @@
 import React from "react";
-import MenuItem from "../menuItem/MenuItem";
-import { getAllMenuItems } from "../menuItem/api";
+import MenuItem from "../components/MenuItem";
+import { getAllMenuItems } from "../api";
+import { Button } from "@material-ui/core";
+import "../style.css";
 // import { MenuItem } from "react-bootstrap";
 
 class MenuItemContainer extends React.Component {
@@ -47,11 +49,11 @@ class MenuItemContainer extends React.Component {
   //       });
   //   };
   render() {
-    let allMenuItemss = <h4>No items!</h4>;
+    let allMenuItems = <h4>No items!</h4>;
 
     if (this.props.menuItems.length > 0) {
       console.log("length");
-      allMenuItemss = this.props.menuItems.map((menuItem, index) => {
+      allMenuItems = this.props.menuItems.map((menuItem, index) => {
         return (
           <MenuItem
             name={menuItem.name}
@@ -71,8 +73,11 @@ class MenuItemContainer extends React.Component {
     return (
       <>
         <h3>All Articles</h3>
-        {allMenuItemss}
+        {allMenuItems}
         <p>test p</p>
+        {/* <Button color="secondary" variant="outlined" className="btnMI">
+          This is a test for using the famous library Material UI{" "}
+        </Button> */}
       </>
     );
   }
