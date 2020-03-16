@@ -9,6 +9,7 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
+import OrderList from './order/components/orderList';
 
 class App extends Component {
   constructor () {
@@ -16,10 +17,13 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      orders: []
     }
   }
-
+  setOrders = (orders) => {
+    this.setState({ orders: orders });
+  }
   setUser = user => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
@@ -51,6 +55,7 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
         </main>
+        <OrderList/>
       </React.Fragment>
     )
   }
