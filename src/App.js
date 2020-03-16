@@ -9,7 +9,7 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-import MenuItemContainer from "./menuItem/MenuContainer";
+import MenuItemContainer from "./menuItem/components/MenuContainer";
 
 class App extends Component {
   constructor() {
