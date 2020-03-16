@@ -1,0 +1,18 @@
+API
+  => /api/menu-items
+  X /api/
+  X ...
+  X ...
+
+Components
+  App State=[MenuItem]
+    MenuItems  (List Container)  => MAKE API CALL TO /api/menu-items
+                                => setState on the APP
+      MenuItem (List Item)
+      
+        Delete Link/Button
+
+State
+  MenuItems
+
+Props

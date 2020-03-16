@@ -21,9 +21,7 @@ class App extends Component {
       orders: []
     }
   }
-  setOrders = (orders) => {
-    this.setState({ orders: orders });
-  }
+  
   setUser = user => this.setState({ user })
 
   clearUser = () => this.setState({ user: null })
@@ -32,6 +30,9 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
+  setOrders = (orders) => {
+    this.setState({ orders: orders });
+  }
   render () {
     const { alerts, user } = this.state
 
@@ -55,7 +56,8 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
         </main>
-        <OrderList/>
+        <OrderList orders={this.state.orders} 
+        setOrders={this.setOrders}/>
       </React.Fragment>
     )
   }

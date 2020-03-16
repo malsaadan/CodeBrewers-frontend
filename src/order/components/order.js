@@ -7,7 +7,10 @@ class Order extends React.Component {
     render() { 
         return ( 
             <div>
-        <h2>items</h2>
+            <h2>Total Price : {this.props.totalPrice}</h2>
+            <h6>Discount : {this.props.discount}</h6>
+            <h6>Tax : {this.props.tax}</h6>
+            
                 <a href="#" onClick={this.deleteOrder}>Delete</a>
             </div>
          );
