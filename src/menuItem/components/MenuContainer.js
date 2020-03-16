@@ -1,9 +1,9 @@
 import React from "react";
 import MenuItem from "../components/MenuItem";
-import { getAllMenuItems } from "../api";
+import { getAllMenuItems, addMenuItem } from "../api";
 import { Grid } from "@material-ui/core";
 // import { MenuItem } from "react-bootstrap";
-
+import MenuItemj from "../components/MenuItemj";
 class MenuItemContainer extends React.Component {
   componentDidMount() {
     getAllMenuItems()
@@ -14,20 +14,26 @@ class MenuItemContainer extends React.Component {
         console.log("API ERROR:", error);
       });
   }
-  //   // Make an aPI call to add
-  //   addMenuItems = () => {
-  //     console.log("The Menu Item to Add");
+  // Make an aPI call to add
+  addNewMenuItem = menuItem => {
+    // Make an axios request
+    addMenuItem(menuItem)
+      .then(response => {
+        console.log(`The item ${menuItem.name} has been added successfully.`);
 
-  //     addMenuItem()
-  //       .then(response => {
-  //         console.log(`The item has been added.`);
-  //       })
+        // If the request was successful then add the new Menu Item to
 
-  //       .catch(error => {
-  //         console.log(`API ERROR `, error);
-  //       });
-  //   };
-
+        // Save the array that was passed as props in a variable
+        const menuItems = this.props.menuItems;
+        // push the new item to the end of the menuItems array
+        menuItems.push(menuItem);
+        // Update the array in the parent state
+        this.props.setMenuItems(menuItems);
+      })
+      .catch(error => {
+        console.log("API ERROR: ", error);
+      });
+  };
   // Make an aPI call to delete
   //   deleteArticle = id => {
   //     console.log("The Article ID to Delete", id);
@@ -55,7 +61,7 @@ class MenuItemContainer extends React.Component {
       allMenuItems = this.props.menuItems.map((menuItem, index) => {
         return (
           // add the grid to each item
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
             <Grid item xs={12} sm={4}>
               <MenuItem
                 name={menuItem.name}
@@ -68,6 +74,18 @@ class MenuItemContainer extends React.Component {
                 // addArticle={this.addArticles}
                 key={index}
               />
+              {/* 
+              <MenuItemj
+                name={menuItem.name}
+                description={menuItem.description}
+                price={menuItem.price}
+                picture={menuItem.picture}
+                category={menuItem.category}
+                id={menuItem._id}
+                // deleteArticle={this.deleteArticle}
+                // addArticle={this.addArticles}
+                key={index}
+              /> */}
             </Grid>
           </Grid>
 
