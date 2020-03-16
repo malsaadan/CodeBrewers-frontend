@@ -62,31 +62,21 @@ class MenuItemContainer extends React.Component {
         return (
           // add the grid to each item
 
-          <Grid item xs={12} sm={4}>
-            <MenuItem
-              name={menuItem.name}
-              description={menuItem.description}
-              price={menuItem.price}
-              picture={menuItem.picture}
-              category={menuItem.category}
-              id={menuItem._id}
-              // deleteArticle={this.deleteArticle}
-              // addArticle={this.addArticles}
-              key={index}
-            />
-            {/* 
-              <MenuItemj
-                name={menuItem.name}
-                description={menuItem.description}
-                price={menuItem.price}
-                picture={menuItem.picture}
-                category={menuItem.category}
-                id={menuItem._id}
-                // deleteArticle={this.deleteArticle}
-                // addArticle={this.addArticles}
-                key={index}
-              /> */}
-          </Grid>
+          // <Grid item xs={4} sm={4}>
+
+          <MenuItem
+            name={menuItem.name}
+            description={menuItem.description}
+            price={menuItem.price}
+            picture={menuItem.picture}
+            category={menuItem.category}
+            id={menuItem._id}
+            // deleteArticle={this.deleteArticle}
+            // addArticle={this.addArticles}
+            key={index}
+          />
+
+          // </Grid>
 
           //
         );
@@ -97,9 +87,8 @@ class MenuItemContainer extends React.Component {
       <>
         <AddMenuItem addMenuItem={this.addMenuItem} />
         <h3>All Articles</h3>
-        <Grid container spacing={0}>
+        <Grid container spacing={1}>
           {allMenuItems}
-          <p>test p</p>
         </Grid>
         {/* <Button color="secondary" variant="outlined" className="btnMI">
           This is a test for using the famous library Material UI{" "}
