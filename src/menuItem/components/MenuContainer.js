@@ -1,8 +1,7 @@
 import React from "react";
 import MenuItem from "../components/MenuItem";
 import { getAllMenuItems } from "../api";
-import { Button } from "@material-ui/core";
-import "../style.css";
+import { Grid } from "@material-ui/core";
 // import { MenuItem } from "react-bootstrap";
 
 class MenuItemContainer extends React.Component {
@@ -55,17 +54,24 @@ class MenuItemContainer extends React.Component {
       console.log("length");
       allMenuItems = this.props.menuItems.map((menuItem, index) => {
         return (
-          <MenuItem
-            name={menuItem.name}
-            description={menuItem.description}
-            price={menuItem.price}
-            picture={menuItem.picture}
-            category={menuItem.category}
-            id={menuItem._id}
-            // deleteArticle={this.deleteArticle}
-            // addArticle={this.addArticles}
-            key={index}
-          />
+          // add the grid to each item
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={4}>
+              <MenuItem
+                name={menuItem.name}
+                description={menuItem.description}
+                price={menuItem.price}
+                picture={menuItem.picture}
+                category={menuItem.category}
+                id={menuItem._id}
+                // deleteArticle={this.deleteArticle}
+                // addArticle={this.addArticles}
+                key={index}
+              />
+            </Grid>
+          </Grid>
+
+          //
         );
       });
     }
