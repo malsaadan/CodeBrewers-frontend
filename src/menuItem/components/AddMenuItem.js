@@ -1,4 +1,11 @@
 import React from "react";
+import { FormPropsTextFields } from "./addItem";
+// Material UI
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import SaveIcon from "@material-ui/icons/Save";
+import TextField from "@material-ui/core/TextField";
+import addTest from "./addItem";
 
 export class AddMenuItem extends React.Component {
   // add constructor
@@ -110,7 +117,25 @@ export class AddMenuItem extends React.Component {
           value={this.state.category}
         />
         <br />
-        <button onClick={this.addMenuItem}>Add New Item</button>
+        {/* <button onClick={this.addMenuItem}>Add New Item</button> */}
+        <Button
+          onClick={this.addMenuItem}
+          variant="contained"
+          color="primary"
+          component="span"
+          startIcon={<SaveIcon />}
+          size="small"
+        >
+          Add New Item
+        </Button>
+
+        {/* <TextField
+          required
+          id="standard-required"
+          label="Required"
+          defaultValue="Name"
+        /> */}
+
         <hr />
       </div>
     );
