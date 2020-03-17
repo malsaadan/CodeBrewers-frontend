@@ -6,15 +6,15 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
-
-export  class EditOrder extends React.Component {
+export  class EditLOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        discount: this.props.discount,
+    discount: this.props.discount,
       open: false
     };
   }
+
 
   // A method that is responsible for opening the modal
   handleClickOpen = () => {
@@ -23,6 +23,7 @@ export  class EditOrder extends React.Component {
     });
   };
 
+
   // A method that is responsible for closing the modal
   handleClose = () => {
     this.setState({
@@ -30,10 +31,11 @@ export  class EditOrder extends React.Component {
     });
   };
 
+
+
   // Handle the text fields' values
   handleTextField = event => {
     const input = event.target;
-
     // If conditions to know which field's value has been changed based on id and set new value in the state
     if (input.id === "discount") {
       this.setState({
@@ -42,18 +44,23 @@ export  class EditOrder extends React.Component {
     }
   };
 
+
+
    // A function to trigger the parent's function to edit the item once the save button clicked
    editOrder = event => {
     this.handleClose();
-
     // Create a new item object with the updated values
     const order = {
       discount: this.state.discount,
     };
-
-    // Pass the id and the new menu Order to the grand parent
+    // Pass the id and the Order to the grand parent
     this.props.editOrder(this.props.id, order);
   };
+
+
+
+
+
 
   render() {
     return (
@@ -96,4 +103,7 @@ export  class EditOrder extends React.Component {
     );
   }
 }
-export default EditOrder;
+
+
+
+export default EditLOrder;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
@@ -12,8 +11,8 @@ import AlertDismissible from './auth/components/AlertDismissible'
 import OrderList from './order/components/orderList';
 
 class App extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
 
     this.state = {
       user: null,
@@ -56,7 +55,8 @@ class App extends Component {
             <ChangePassword alert={this.alert} user={user} />
           )} />
         </main>
-        <OrderList orders={this.state.orders} 
+        <OrderList 
+        orders={this.state.orders} 
         setOrders={this.setOrders}/>
       </React.Fragment>
     )

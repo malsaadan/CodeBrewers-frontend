@@ -13,7 +13,7 @@ class Order extends React.Component {
             <h6>Discount : {this.props.discount}</h6>
             <h6>Tax : {this.props.tax}</h6>
 
-            <EditOrder 
+            <EditOrder
             id={this.props.id} 
             editOrder={this.props.editOrder} 
             discount={this.props.discount} 

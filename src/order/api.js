@@ -5,14 +5,14 @@ const getAllOrders = () => {
   return axios.get(`${apiUrl}/api/orders`);
 };
 
-// Edit Orders by ID
-const editOrderByID = (id, order) => {
-  return axios.patch(`${apiUrl}/api/orders/${id}`,{order});
-};
+// // Edit Orders by ID
+// const editOrderByID = (id, order) => {
+//   return axios.patch(`${apiUrl}/api/orders/${id}`,{order});
+// };
 
 
-// Delete Orders by ID
-const deleteOrderByID = (id) => {
-  return axios.delete(`${apiUrl}/api/orders/${id}`);
-}
-export { getAllOrders, deleteOrderByID , editOrderByID};
+// // Delete Orders by ID
+// const deleteOrderByID = (id) => {
+//   return axios.delete(`${apiUrl}/api/orders/${id}`);
+// }
+export { getAllOrders};
