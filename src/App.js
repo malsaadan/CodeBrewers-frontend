@@ -16,9 +16,17 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      orders: [],
     }
   }
+
+  setOrders = (orders) => { 
+    this.setState ( { orders }) ; 
+  }
+
+
+
 
   setUser = user => this.setState({ user })
 
