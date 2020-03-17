@@ -1,6 +1,6 @@
 import React from 'react';
 import Order from './order';
-import {getAllOrders , deleteOrderByID} from '../api'
+import {getAllOrders , deleteOrderByID ,editOrderByID} from '../api'
 class OrderList extends React.Component {
     componentDidMount(){
         getAllOrders()
@@ -11,6 +11,38 @@ class OrderList extends React.Component {
             console.log('API ERROR:',err);
         })
     }
+    
+    // Make an API call to edit an Order
+    editOrder = (id, updatedOrder) => {
+        console.log(`Edit the order with ID ${id}`);
+    
+        // Make axios request
+        editOrderByID(id, updatedOrder)
+          .then(response => {
+            console.log(
+              `The menu Order with the ID ${id} has been updated successfully.`
+            );
+    
+            // To update the list in the UI
+            const orders = this.props.orders;
+    
+            orders.forEach((order, index) => {
+              if (order._id === id) {
+                orders[index].discount = updatedOrder.discount;
+              }
+            });
+    
+            // Update the Order list in the parent to the new list we have just edited
+            this.props.setOrders(orders);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      };
+
+
+
+      
 
  // Make an API call to Delete an Order
      deleteOrder = (id)=>{
@@ -18,10 +50,11 @@ class OrderList extends React.Component {
          deleteOrderByID(id)
          .then((res) => {
  console.log(`The Order with the ID ${id} has been deleted .`)
- 
+ // Filter the array to remove the deleted order
  const newOrderList = this.props.orders.filter((order)=>{
      return order._id !== id ;
  })
+  // Update the Order list in the parent's state
  this.props.setOrders(newOrderList);
          })
          .catch((err)=> {
@@ -29,6 +62,11 @@ class OrderList extends React.Component {
          })
  
      }
+
+
+
+
+
      render() { 
         let AllOrders = <h4>No Orders!</h4>;
 
@@ -38,6 +76,7 @@ class OrderList extends React.Component {
                         totalPrice = {order.totalPrice}
                         discount = {order.discount}
                         tax = {order.tax}
+                        editOrder = {this.editOrder}
                         deleteOrder ={this.deleteOrder}
                         key = {index}/>
         });
