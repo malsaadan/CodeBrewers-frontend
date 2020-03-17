@@ -88,7 +88,7 @@ class MenuItemContainer extends React.Component {
     return (
       <div className="menuCont">
         <AddMenuItem addMenuItem={this.addMenuItem} />
-        <h3>All Articles</h3>
+        <h3>The Menu</h3>
         <Grid container spacing={1}>
           {allMenuItems}
         </Grid>

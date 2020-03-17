@@ -1,11 +1,15 @@
 import React from "react";
-import { FormPropsTextFields } from "./addItem";
 // Material UI
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
-import addTest from "./addItem";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 export class AddMenuItem extends React.Component {
   // add constructor
@@ -17,10 +21,22 @@ export class AddMenuItem extends React.Component {
       description: "",
       price: "",
       picture: "",
-      category: ""
+      category: "",
+      open: false
     };
   }
 
+  handleClickOpen = () => {
+    this.setState({
+      open: true
+    });
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false
+    });
+  };
   // A function to pass the new menu item to the parent component
   addMenuItem = () => {
     // add an object with that holds the state values
@@ -31,6 +47,8 @@ export class AddMenuItem extends React.Component {
       picture: this.state.picture,
       category: this.state.category
     };
+
+    this.handleClose();
 
     // reset text boxes values
     this.setState({
@@ -74,51 +92,77 @@ export class AddMenuItem extends React.Component {
     }
   };
 
+  // Handle the text fields' values
+  handleTextField = event => {
+    const input = event.target;
+    // If conditions to know which field's value has been changed based on id and set new value in the state
+    if (input.id === "name") {
+      this.setState({
+        name: input.value
+      });
+    } else if (input.id === "description") {
+      this.setState({
+        description: input.value
+      });
+    } else if (input.id === "price") {
+      this.setState({
+        price: input.value
+      });
+    } else if (input.id === "picture") {
+      this.setState({
+        picture: input.value
+      });
+    } else {
+      this.setState({
+        category: input.value
+      });
+    }
+  };
   render() {
     return (
       <div>
-        <h3>Add a New Item</h3>
+        {/* <h3>Add a New Item</h3>
         <label>Name:</label>
         <input
           className="name"
           onChange={this.handleInputBox}
           value={this.state.name}
         />
-        <br />
+        <br /> */}
         {/* // Description input */}
-        <label>Description:</label>
+        {/* <label>Description:</label>
         <input
           className="description"
           onChange={this.handleInputBox}
           value={this.state.description}
         />
-        <br />
+        <br /> */}
         {/* // Price input */}
-        <label>Price:</label>
+        {/* <label>Price:</label>
         <input
           className="price"
           onChange={this.handleInputBox}
           value={this.state.price}
         />
-        <br />
+        <br /> */}
         {/* // Picture input */}
-        <label>Picture:</label>
+        {/* <label>Picture:</label>
         <input
           className="picture"
           onChange={this.handleInputBox}
           value={this.state.picture}
         />
-        <br />
+        <br /> */}
         {/* Category input */}
-        <label>Category:</label>
+        {/* <label>Category:</label>
         <input
           className="category"
           onChange={this.handleInputBox}
           value={this.state.category}
         />
-        <br />
+        <br /> */}
         {/* <button onClick={this.addMenuItem}>Add New Item</button> */}
-        <Button
+        {/* <Button
           onClick={this.addMenuItem}
           variant="contained"
           color="primary"
@@ -127,7 +171,7 @@ export class AddMenuItem extends React.Component {
           size="small"
         >
           Add New Item
-        </Button>
+        </Button> */}
 
         {/* <TextField
           required
@@ -135,7 +179,83 @@ export class AddMenuItem extends React.Component {
           label="Required"
           defaultValue="Name"
         /> */}
-
+        <div>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleClickOpen}
+          >
+            Add Item
+          </Button>
+          <Dialog
+            open={this.state.open}
+            onClose={this.handleClose}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle id="form-dialog-title">Add a new item</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Name"
+                id="name"
+                fullWidth
+                onChange={this.handleTextField}
+                value={this.state.name}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Description"
+                id="description"
+                fullWidth
+                onChange={this.handleTextField}
+                value={this.state.description}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                type="number"
+                label="Price"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">SR</InputAdornment>
+                  )
+                }}
+                id="price"
+                fullWidth
+                onChange={this.handleTextField}
+                value={this.state.price}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                label="PictureURL"
+                id="picture"
+                fullWidth
+                onChange={this.handleTextField}
+                value={this.state.picture}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                label="Category"
+                id="category"
+                fullWidth
+                onChange={this.handleTextField}
+                value={this.state.category}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.addMenuItem} color="primary">
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
         <hr />
       </div>
     );

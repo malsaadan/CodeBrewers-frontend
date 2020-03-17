@@ -95,7 +95,7 @@ class App extends Component {
 
         <div>
           <Grid container direction="column">
-            <Grid item container spacing={1}>
+            <Grid item container spacing={2}>
               <Grid item xs={2} sm={1} />
               <Grid item xs={11} sm={4}>
                 <Paper>
