@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from "@material-ui/core/Button";
 class Order extends React.Component {
     deleteOrder = (e)=>{
         e.preventDefault();
@@ -10,8 +11,10 @@ class Order extends React.Component {
             <h2>Total Price : {this.props.totalPrice}</h2>
             <h6>Discount : {this.props.discount}</h6>
             <h6>Tax : {this.props.tax}</h6>
-            
-                <a href="#" onClick={this.deleteOrder}>Delete</a>
+            <Button variant="outlined" 
+            color="secondary" 
+            onClick={this.deleteOrder}>Delete 
+            </Button>  
             </div>
          );
     }
