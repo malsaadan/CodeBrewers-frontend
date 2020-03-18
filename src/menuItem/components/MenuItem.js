@@ -85,6 +85,14 @@ class MenuItem extends Component {
     this.props.deleteMenuItem(this.props.id);
   };
 
+  addToOrder = event => {
+    this.props.addItemToOrder(this.props.id);
+  };
+
+
+
+
+
   render() {
     return (
       <div>
@@ -95,6 +103,7 @@ class MenuItem extends Component {
         <Button style={{"text-transform":"capitalize"}} variant="outlined" color="secondary" onClick={this.deleteMenuItem}>
           Delete
         </Button>
+        <Button style={{"text-transform":"capitalize"}}  variant="outlined" color="secondary" onClick={this.addToOrder}> Add to Order </Button>
       </div>
     );
   }
