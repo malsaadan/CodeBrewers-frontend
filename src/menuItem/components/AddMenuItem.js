@@ -1,5 +1,6 @@
 import React from "react";
 import RadioButtonsGroup from "./radio";
+
 // Material UI
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -11,7 +12,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
-
 export class AddMenuItem extends React.Component {
   // add constructor
   constructor(props) {
@@ -52,6 +52,7 @@ export class AddMenuItem extends React.Component {
       category: this.state.category
     };
 
+    // close the pop-up window after adding the order
     this.handleClose();
 
     // reset text boxes values
