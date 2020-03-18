@@ -1,78 +1,63 @@
+// Import react component
 import React, { Component } from "react";
+
+// Import the child component
 import "./MenuItem.css";
-import Coffee from "./coffee.png";
 
 // Import Material UI
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import { Grid } from "@material-ui/core";
+import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
 
 class MenuItem extends React.Component {
   render() {
     return (
+      // put the Grid for the layout
       <Grid item xs={6} sm={4}>
-        {/* <div className="menuItem"> */}
-        {/* title & content & Author */}
+        {/* initiate the card component for each item  */}
         <Card>
-          <CardMedia image="./coffee.png" title="Paella dish" />
-          <CardContent>
+          <CardContent
+            // embedded style for cardContent
+            style={{
+              color: "#4c6873",
+              backgroundColor: "#d9d4cc",
+              padding: "2%"
+            }}
+            // execute the function once item is clicked
+            onClick={() => {
+              console.log("test");
+              // pass the name of the item
+              alert(`${this.props.name} Added`);
+            }}
+          >
             <Typography>
               <h4>{this.props.name}</h4>
-
-              <sub>{this.props.description}</sub>
-              <p>{this.props.price}</p>
+              {/* use CardMedia to put the img  */}
+              <CardMedia image="./coffee.png" title="Paella dish" />
+              <CardActionArea>
+                <CardMedia
+                  // onClick={() => {
+                  //   console.log("test");
+                  //   alert("Item Added");
+                  // }}
+                  component="img"
+                  alt={`Picture of ${this.props.category}`}
+                  height="140"
+                  src={this.props.picture}
+                  title={this.props.category}
+                />
+              </CardActionArea>
+              <p>{this.props.description}</p>
+              <sub>
+                <LocalOfferOutlinedIcon /> {this.props.price} SAR
+              </sub>
             </Typography>
           </CardContent>
-          <CardActions>
-            {/* <Button
-              size="small"
-              color="primary"
-              onClick={() => {
-                console.log("test");
-                alert("Item Added");
-              }}
-            >
-              Add
-            </Button> */}
-          </CardActions>
-
-          <CardActionArea>
-            <CardMedia
-              onClick={() => {
-                console.log("test");
-                alert("Item Added");
-              }}
-              component="img"
-              alt="Coffee"
-              height="140"
-              src={this.props.picture}
-              title={this.props.category}
-            />
-          </CardActionArea>
         </Card>
-        {/* <img className="img" src={Coffee} /> */}
-        {/* <a href="#" onClick={this.deleteArticle}>
-          DELETE
-        </a> */}
-        {/* <button onClick={this.addArticles}> Add</button> */}
-        {/* </div> */}
-        {/* <Card variant="outlined">
-          <CardContent>
-            <Typography
-              className={classes.title}
-              color="textSecondary"
-              gutterBottom
-            >
-              Word of the Day
-            </Typography>
-          </CardContent>
-        </Card> */}
       </Grid>
 =======
 import EditItem from './editMenuItem';

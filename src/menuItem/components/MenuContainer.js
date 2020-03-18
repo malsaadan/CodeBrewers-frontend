@@ -1,5 +1,35 @@
 import React, { Component } from "react";
 import "./MenuItem.css";
+
+// import add menu Item
+import AddMenuItem from "./AddMenuItem";
+class MenuItemContainer extends React.Component {
+  componentDidMount() {
+    getAllMenuItems()
+      .then(response => {
+        this.props.setMenuItems(response.data.menuItems);
+      })
+      .catch(error => {
+        console.log("API ERROR:", error);
+      });
+  }
+  // Make an API call to add function
+  addMenuItem = menuItem => {
+    // Make an axios request
+    addNewMenuItem(menuItem)
+      .then(response => {
+        console.log(`The item ${menuItem.name} has been added successfully.`);
+
+        // Save the array that was passed as props in a variable
+        const menuItems = this.props.menuItems;
+        // add/push the new item to the the menuItems array
+        menuItems.push(menuItem);
+        // Update the array in the parent state
+        this.props.setMenuItems(menuItems);
+      })
+      .catch(error => {
+        console.log("API ERROR: ", error);
+      });
 import Coffee from "./coffee.png";
 
 import EditItem from "./editMenuItem";
@@ -58,6 +88,26 @@ class MenuItem extends React.Component {
             picture={this.props.picture}
             category={this.props.category}
           />
+
+          // </Grid>
+
+          //
+        );
+      });
+    }
+
+    return (
+      <div>
+        <AddMenuItem className="addItem" addMenuItem={this.addMenuItem} />
+
+        <h3>CodeBrewers Menu</h3>
+        <Grid container spacing={1}>
+          {allMenuItems}
+        </Grid>
+        {/* <Button color="secondary" variant="outlined" className="btnMI">
+          This is a test for using the famous library Material UI{" "}
+        </Button> */}
+      </div>
           <Button
             style={{ "text-transform": "capitalize" }}
             variant="outlined"

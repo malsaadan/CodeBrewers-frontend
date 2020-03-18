@@ -9,7 +9,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    display: "inline-block"
   },
   Radio: {
     display: "inline-block"
@@ -29,8 +30,16 @@ export default function RadioButtonsGroup(props) {
           value={props.category}
           onChange={props.handleChange}
         >
-          <FormControlLabel value="drink" control={<Radio />} label="Drink" />
-          <FormControlLabel value="food" control={<Radio />} label="Food" />
+          <FormControlLabel
+            value="drink"
+            control={<Radio style={{ color: "#4c6873" }} />}
+            label="Drink"
+          />
+          <FormControlLabel
+            value="food"
+            control={<Radio style={{ color: "#4c6873" }} />}
+            label="Food"
+          />
         </RadioGroup>
       </FormControl>
     </div>
