@@ -4,14 +4,22 @@ import axios from "axios";
 
 //Get All menu items
 export const getAllMenuItems = () => {
+  // return a promise
   return axios.get(`${apiUrl}/api/menu-items`);
 };
 
+//Get menu items by id
 export const getMenuItemsByID = (id) => {
   return axios.get(`${apiUrl}/api/menu-items/${id}`);
 };
 
-// Delete MenuItem By ID
+// Add Menu Item
+export const addNewMenuItem = menuItem => {
+  // return a promise
+  return axios.post(`${apiUrl}/api/menu-items`, { menuItem });
+};
+
+  // Delete MenuItem By ID
 export const deleteMenuItemByID = id => {
   // return a promise so that I can catch the error & display it in the UI
   return axios.delete(`${apiUrl}/api/menu-items/${id}`);

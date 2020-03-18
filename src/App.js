@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import "./App.scss";
 import { Route } from "react-router-dom";
+// import MenuContainer from "./menuItem/components2/MenuContainer";
+
+// add the grid from Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
 import Header from "./header/Header";
@@ -13,6 +19,17 @@ import MenuItemContainer from "./menuItem/components/MenuContainer";
 import OrderList from './order/components/orderList';
 
 
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  }
+}));
 
 class App extends Component {
   constructor() {
@@ -103,6 +120,30 @@ class App extends Component {
         menuItems={this.state.menuItems} />
         </>
         
+        {/* <MenuCont></MenuCont> */}
+        {/* ######## The Content of the Page #############files // add the grid  to the page */}
+
+        <div>
+          <Grid container direction="column">
+            <Grid item container spacing={2}>
+              <Grid item xs={2} sm={1} />
+              <Grid item xs={11} sm={4}>
+                <Paper>
+                  <h1> This is where the orders will be</h1>
+                </Paper>
+              </Grid>
+              <Grid item xs={11} sm={6}>
+                <Paper>
+                  <MenuItemContainer
+                    menuItems={this.state.menuItems}
+                    setMenuItems={this.setMenuItems}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={1} sm={1} />
+            </Grid>
+          </Grid>
+        </div>
       </React.Fragment>
     );
   }

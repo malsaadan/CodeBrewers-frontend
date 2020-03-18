@@ -1,0 +1,14 @@
+.menuItem {
+  background-color: #2d3040;
+  color: aliceblue;
+
+  border-radius: 14px;
+  border: 1px solid black;
+  padding: 20px;
+  width: 150px;
+  height: 150px;
+}
+
+.menuCont {
+  /* background-color: #f2ae2e; */
+}
