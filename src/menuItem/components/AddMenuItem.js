@@ -7,6 +7,8 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import TextField from "@material-ui/core/TextField";
 
 import Dialog from "@material-ui/core/Dialog";
@@ -144,8 +146,15 @@ export class AddMenuItem extends React.Component {
         <div>
           <Button
             variant="contained"
-            color="primary"
+            startIcon={<PlaylistAddIcon />}
+            // color="primary"
             onClick={this.handleClickOpen}
+            style={{
+              color: "#4c6873",
+              backgroundColor: "#d9d4cc",
+              margin: "2%",
+              fontFamily: "Ubuntu"
+            }}
           >
             Add Item
           </Button>

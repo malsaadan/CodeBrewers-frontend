@@ -29,18 +29,6 @@ class MenuItem extends React.Component {
               <p>{this.props.price}</p>
             </Typography>
           </CardContent>
-          <CardActions>
-            {/* <Button
-              size="small"
-              color="primary"
-              onClick={() => {
-                console.log("test");
-                alert("Item Added");
-              }}
-            >
-              Add
-            </Button> */}
-          </CardActions>
 
           <CardActionArea>
             <CardMedia
@@ -49,7 +37,7 @@ class MenuItem extends React.Component {
                 alert("Item Added");
               }}
               component="img"
-              alt="Coffee"
+              alt={`Picture of ${this.props.category}`}
               height="140"
               src={this.props.picture}
               title={this.props.category}
