@@ -2,9 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-
 import "./Header.scss";
-
 const authenticatedOptions = (
   <React.Fragment>
     <Nav.Link>
@@ -32,54 +30,49 @@ const authenticatedOptions = (
         Sign Out{" "}
       </Link>
     </Nav.Link>
-  </React.Fragment>
+    </React.Fragment>
 );
-
 const unauthenticatedOptions = (
-  <React.Fragment>
-    <Nav.Link>
-      <Link
-        style={{
-          color: "#4c6873",
-          marginRight: "40px",
-          fontSize: "1.6em"
-        }}
-        to="/sign-up"
-      >
-        Sign Up
-      </Link>
+  <React.Fragment> <Nav.Link>
+  <Link
+    style={{
+      color: "#4c6873",
+      marginRight: "40px",
+      fontSize: "1.6em"
+    }}
+    to="/sign-up"
+  >
+    Sign Up
+  </Link>
 
-      <Link
-        style={{
-          color: "#4c6873",
-          marginRight: "40px",
-          fontSize: "1.6em"
-        }}
-        to="/sign-in"
-      >
-        Sign In
-      </Link>
-    </Nav.Link>
-  </React.Fragment>
+  <Link
+    style={{
+      color: "#4c6873",
+      marginRight: "40px",
+      fontSize: "1.6em"
+    }}
+    to="/sign-in"
+  >
+    Sign In
+  </Link>
+</Nav.Link>
+</React.Fragment>
 );
-
 const alwaysOptions = (
-  <React.Fragment>
-    <Nav.Link>
-      <Link
-        style={{
-          color: "#4c6873",
-          marginRight: "40px",
-          fontSize: "1.6em"
-        }}
-        to="/"
-      >
-        Home
-      </Link>
-    </Nav.Link>
-  </React.Fragment>
+  <React.Fragment><Nav.Link>
+  <Link
+    style={{
+      color: "#4c6873",
+      marginRight: "40px",
+      fontSize: "1.6em"
+    }}
+    to="/"
+  >
+    Home
+  </Link>
+</Nav.Link>
+</React.Fragment>
 );
-
 const Header = ({ user }) => (
   <>
     <Navbar bg="light" expand="lg">
@@ -110,14 +103,3 @@ const Header = ({ user }) => (
 );
 
 export default Header;
-  <header className="main-header">
-    <img src={require('./logo.png')} alt="Logo"/>
-    <nav>
-      { user && <span>Welcome, {user.email}</span>}
-      { user ? authenticatedOptions : unauthenticatedOptions }
-      { alwaysOptions }
-    </nav>
-  </header>
-)
-
-export default Header
