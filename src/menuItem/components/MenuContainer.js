@@ -4,7 +4,6 @@ import { getAllMenuItems, addNewMenuItem } from "../api";
 import { Grid } from "@material-ui/core";
 
 import "./MenuItem.css";
-// import { MenuItem } from "react-bootstrap";
 
 // import add menu Item
 import AddMenuItem from "./AddMenuItem";
@@ -87,8 +86,8 @@ class MenuItemContainer extends React.Component {
 
     return (
       <div className="menuCont">
-        <AddMenuItem addMenuItem={this.addMenuItem} />
-        <h3>The Menu</h3>
+        <AddMenuItem className="addItem" addMenuItem={this.addMenuItem} />
+        <h3>CodeBrewers Menu</h3>
         <Grid container spacing={1}>
           {allMenuItems}
         </Grid>

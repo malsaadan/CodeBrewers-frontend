@@ -3,6 +3,8 @@ import RadioButtonsGroup from "./radio";
 
 // Material UI
 import Button from "@material-ui/core/Button";
+import { createMuiTheme } from "@material-ui/core/styles";
+
 import IconButton from "@material-ui/core/IconButton";
 import SaveIcon from "@material-ui/icons/Save";
 import TextField from "@material-ui/core/TextField";
@@ -129,13 +131,19 @@ export class AddMenuItem extends React.Component {
     }
   };
 
+  theme = createMuiTheme({
+    primary: {
+      main: "#d9d4cc"
+    }
+  });
+
   render() {
     return (
       <div>
         {/* The pop-up window to add an item  */}
         <div>
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             onClick={this.handleClickOpen}
           >

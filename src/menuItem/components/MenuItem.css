@@ -12,3 +12,17 @@
 .menuCont {
   /* background-color: #f2ae2e; */
 }
+
+h3,
+h4 {
+  text-align: center;
+  color: #4c6873;
+  background-color: #d9d4cc;
+  border-radius: 10px;
+  font-family: "Ubuntu", sans-serif;
+}
+
+.addItem {
+  margin: 5%;
+  color: red;
+}

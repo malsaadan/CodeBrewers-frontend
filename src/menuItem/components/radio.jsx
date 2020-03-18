@@ -9,7 +9,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 
 const useStyles = makeStyles(theme => ({
   formControl: {
-    margin: theme.spacing(2)
+    margin: theme.spacing(2),
+    display: "inline-block"
   },
   Radio: {
     display: "inline-block"
