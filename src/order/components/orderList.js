@@ -11,7 +11,7 @@ class OrderList extends React.Component {
             console.log('API ERROR:',err);
         })
     }
-    // to edit an Order
+    // Make an API call to edit an Order
     editOrder = (id, updatedOrder) => {
         console.log(`Edit the order`);
     

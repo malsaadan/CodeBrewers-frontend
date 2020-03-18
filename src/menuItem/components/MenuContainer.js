@@ -173,7 +173,7 @@ class MenuItemContainer extends React.Component {
           This is a test for using the famous library Material UI{" "}
         </Button> */}
       </div>
-=======
+
       <>
         <h3>All Menu Items</h3>
         {allMenuItems}
