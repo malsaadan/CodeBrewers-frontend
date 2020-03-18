@@ -1,10 +1,13 @@
+// Import React components
 import React, { Component } from "react";
-import "./App.scss";
-import ReportApp from "./report/components/ReportApp";
-import { Route } from "react-router-dom";
-// import MenuContainer from "./menuItem/components/MenuContainer";
 
-// add the grid from Material UI
+// Import children components
+import MenuItemContainer from "./menuItem/components/MenuContainer";
+import "./App.scss";
+import { Route } from "react-router-dom";
+
+// ###### Import Material UI components #########
+// Import the Grid components
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
@@ -16,18 +19,6 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-import MenuItemContainer from "./menuItem/components/MenuContainer";
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary
-  }
-}));
 
 class App extends Component {
   constructor() {
@@ -94,35 +85,37 @@ class App extends Component {
         {/* <MenuCont></MenuCont> */}
         {/* ######## The Content of the Page #############files // add the grid  to the page */}
 
-        {/* <AuthenticatedRoute
+        {/* Return all components for the home page */}
+        <AuthenticatedRoute
           user={user}
           path="/"
-          render={() => ( */}
-        <div>
-          <Grid container direction="column">
-            <Grid item container spacing={2}>
-              <Grid item xs={0} sm={1} />
-              <Grid item xs={11} sm={4}>
-                <Paper>
-                  <h1> This is where the orders will be</h1>
-                </Paper>
+          render={() => (
+            <div>
+              <Grid container direction="column">
+                <Grid item container spacing={2}>
+                  <Grid item xs={0} sm={1} />
+                  <Grid item xs={11} sm={4}>
+                    <Paper>
+                      <h1> This is where the orders will be</h1>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={0} sm={6}>
+                    <Paper>
+                      {/* adding the menu container components  */}
+                      <MenuItemContainer
+                        menuItems={this.state.menuItems}
+                        setMenuItems={this.setMenuItems}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={1} sm={1} />
+                </Grid>
               </Grid>
-              <Grid item xs={0} sm={6}>
-                <Paper>
-                  <MenuItemContainer
-                    menuItems={this.state.menuItems}
-                    setMenuItems={this.setMenuItems}
-                  />
-                </Paper>
-              </Grid>
-              <Grid item xs={1} sm={1} />
-            </Grid>
-          </Grid>
 
-          {/* <ReportApp /> */}
-        </div>
-        {/* )}
-         ></AuthenticatedRoute> */}
+              {/* <ReportApp /> */}
+            </div>
+          )}
+        ></AuthenticatedRoute>
       </React.Fragment>
     );
   }
