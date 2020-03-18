@@ -1,23 +1,74 @@
 import React from 'react';
-import  { getAllOrders , createOrder  } from '../api'
+import Order from './order';
+import {getAllOrders} from '../api'
+import {getAllMenuItems} from '../../menuItem/api'
+class OrderList extends React.Component {
+      constructor (props) {
+          super(props) ; 
 
-// continer for the ordersList ,, 
+          
+      }
+    componentDidMount(){
+      getAllMenuItems()
+        .then((res)=> {
+       this.props.setMenuItems(res.data.menuItems)
+        })
+        .catch((err)=>{
+            console.log('API ERROR:',err);
+        })
+    }
 
-class OrdersList extends React.Component { 
 
-// here making the api calls form the database ... 
-// ADD  (submit)
-componentDidMount() {
-    getAllOrders()
-      .then((response) => {
-        this.props.setOrders(response.data.orders);
-      })
-      .catch((error) => {
-        console.log('API ERROR:', error);
+
+render() { 
+    
+
+
+//for the orders 
+let AllOrders = <h4>No Orders!</h4>;
+if(this.props.orders.length > 0)
+{
+AllOrders = this.props.orders.map((order,index)=>{
+return <Order  id = {order._id}
+               totalPrice = {order.price}
+               discount = {order.name}
+               key = {index}/>
+});
+}
+
+
+
+    let allMenuItemsForOrder = <h4>No order!</h4>;
+    // If there are items in the list then display them
+    if (this.props.menuItems.length > 0) {
+      console.log("length");
+      // for the items ... 
+      allMenuItemsForOrder = this.props.menuItems.map((menuItem, index) => {
+        return (
+          <Order
+            name={menuItem.name}
+            description={menuItem.description}
+            price={menuItem.price}
+            picture={menuItem.picture}
+            category={menuItem.category}
+            id={menuItem._id}
+            deleteMenuItem={this.deleteMenuItem}
+            editItem = {this.editMenuItem}
+            key={index}
+          />
+        );
       });
+    }
+        return ( 
+            <>
+            <h3>All Orders</h3>
+             {AllOrders}
+            </>
+         );
+    }
+}
+export default OrderList;
 
-      
-  }
 // DELETE 
 
 
@@ -69,19 +120,3 @@ obj.sum
  * ***/
 // Edit the amount delete using slice ... 
 // 
-
-
-
-//
-    render() {
-
-
-        // mapping the props for the componants .. : 
-
-
-        // create order .. for adding one order 
-        return
-    }
-}
-
-export default OrdersList ;

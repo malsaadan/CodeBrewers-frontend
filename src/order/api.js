@@ -8,7 +8,8 @@ const getAllOrders = () => {
 const createOrder = () => { 
     return axios.post(`${apiUrl}/api/orders`)
 }
+ const getAllMenu = () => {
+  return axios.get(`${apiUrl}/api/menu-items`);
+};
 
-
-
-export { getAllOrders , createOrder }
+export { getAllOrders , createOrder , getAllMenu}
