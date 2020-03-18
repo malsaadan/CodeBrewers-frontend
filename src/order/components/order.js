@@ -1,34 +1,46 @@
 import React from 'react';
-import EditOrder from './editOrder';
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
-
-
 class Order extends React.Component {
+    constructor (props) { 
+        super(props);
+         this.state={ 
+             itemPrice:this.props.itemPrice, 
+             itemID:this.props.itemID,
+            // orderList: [this.props.orderList],
+             totalPrice:0 
+                     }
+    }
+
+ //    totalPrice = () =>{
+ //        if (this.props.itemID === this.props.itemID) {
+ //         const n=this.props.price
+ //         var total = 0;
+ //           for(var i = 0; i < n.length; i++){
+ //             total += i;
+ //           }
+ //           return total;
+ //        }
+    
+ //     }
     deleteOrder = (e)=>{
         e.preventDefault();
-        this.props.deleteOrder(this.props.id)
+        this.props.handleRemoveEvent(this.props.id)
     }
     render() { 
         return ( 
             <div>
-            <h2>Total Price : {this.props.totalPrice}</h2>
-            <h6>Discount : {this.props.discount}</h6>
-            <h6>Tax : {this.props.tax}</h6>
-
-            <EditOrder
-            id={this.props.id} 
-            editOrder={this.props.editOrder} 
-            discount={this.props.discount} 
-            />
-
+        <h2>================================ </h2>
+            <h2>{this.props.itemName}</h2>
             <Button 
             variant="contained"
             color="secondary" 
             style={{"text-transform":"capitalize"}}
             startIcon={<DeleteIcon />}
             onClick={this.deleteOrder}>Delete 
-            </Button>  
+            </Button> 
+          <p> TOTAL :: { this.props.totalPrice} </p>
+
             </div>
          );
     }

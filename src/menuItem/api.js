@@ -8,10 +8,16 @@ export const getAllMenuItems = () => {
   return axios.get(`${apiUrl}/api/menu-items`);
 };
 
+//Get menu items by id
+export const getMenuItemsByID = (id) => {
+  return axios.get(`${apiUrl}/api/menu-items/${id}`);
+};
+
 // Add Menu Item
 export const addNewMenuItem = menuItem => {
   // return a promise
   return axios.post(`${apiUrl}/api/menu-items`, { menuItem });
+};
 
   // Delete MenuItem By ID
 export const deleteMenuItemByID = id => {

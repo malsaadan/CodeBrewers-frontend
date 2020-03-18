@@ -11,7 +11,7 @@ export  class EditLOrder extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    discount: this.props.discount,
+    discount: 0 ,
       open: false
     };
   }
@@ -89,9 +89,10 @@ export  class EditLOrder extends React.Component {
             color="primary">
               Save
             </Button>
-            
+           
           </DialogActions>
         </Dialog>
+        <h3>Discount : {this.state.discount}</h3>
       </div>
     );
   }

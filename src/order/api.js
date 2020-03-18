@@ -1,18 +1,15 @@
-import apiUrl from '../apiConfig';
 import axios from 'axios';
-// Get All Orders
+import apiUrl from '../apiConfig';
+
 const getAllOrders = () => {
-  return axios.get(`${apiUrl}/api/orders`);
+    return axios.get(`${apiUrl}/api/orders`);
+  };
+
+const createOrder = () => { 
+    return axios.post(`${apiUrl}/api/orders`)
+}
+ const getAllMenu = () => {
+  return axios.get(`${apiUrl}/api/menu-items`);
 };
 
-// // Edit Orders by ID
-// const editOrderByID = (id, order) => {
-//   return axios.patch(`${apiUrl}/api/orders/${id}`,{order});
-// };
-
-
-// // Delete Orders by ID
-// const deleteOrderByID = (id) => {
-//   return axios.delete(`${apiUrl}/api/orders/${id}`);
-// }
-export { getAllOrders};
+export { getAllOrders , createOrder , getAllMenu}
