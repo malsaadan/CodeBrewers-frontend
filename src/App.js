@@ -1,13 +1,14 @@
+// Import React components
 import React, { Component } from "react";
+// Import children components
+import MenuItemContainer from "./menuItem/components/MenuContainer";
 import "./App.scss";
 import { Route } from "react-router-dom";
-// import MenuContainer from "./menuItem/components2/MenuContainer";
-
-// add the grid from Material UI
+// ###### Import Material UI components #########
+// Import the Grid components
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-
 import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
 import Header from "./header/Header";
 import SignUp from "./auth/components/SignUp";
@@ -15,7 +16,6 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-import MenuItemContainer from "./menuItem/components/MenuContainer";
 import OrderList from "./order/components/orderList";
 
 const useStyles = makeStyles(theme => ({
@@ -98,46 +98,49 @@ class App extends Component {
           />
         </main>
         {/* <OrderList orders={this.state.orders} setOrders={this.setOrders} /> */}
-        <>
-          <MenuItemContainer
-            orders={this.state.orders}
-            setOrders={this.setOrders}
-            menuItems={this.state.menuItems}
-            setMenuItems={this.setMenuItems}
-          />
-
-          <OrderList
-            orders={this.state.orders}
-            setOrders={this.setOrders}
-            setMenuItems={this.setMenuItems}
-            menuItems={this.state.menuItems}
-          />
-        </>
 
         {/* <MenuCont></MenuCont> */}
         {/* ######## The Content of the Page #############files // add the grid  to the page */}
 
-        <div>
-          <Grid container direction="column">
-            <Grid item container spacing={2}>
-              <Grid item xs={2} sm={1} />
-              <Grid item xs={11} sm={4}>
-                <Paper>
-                  <h1> This is where the orders will be</h1>
-                </Paper>
+        {/* Return all components for the home page */}
+        <AuthenticatedRoute
+          user={user}
+          path="/"
+          render={() => (
+            <div>
+              <Grid container direction="column">
+                <Grid item container spacing={2}>
+                  <Grid item xs={0} sm={1} />
+                  <Grid item xs={11} sm={4}>
+                    <Paper>
+                      <h1> This is where the orders will be</h1>
+                      <OrderList
+                        orders={this.state.orders}
+                        setOrders={this.setOrders}
+                        setMenuItems={this.setMenuItems}
+                        menuItems={this.state.menuItems}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={0} sm={6}>
+                    <Paper>
+                      {/* adding the menu container components  */}
+                      <MenuItemContainer
+                        orders={this.state.orders}
+                        setOrders={this.setOrders}
+                        menuItems={this.state.menuItems}
+                        setMenuItems={this.setMenuItems}
+                      />
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={1} sm={1} />
+                </Grid>
               </Grid>
-              <Grid item xs={11} sm={6}>
-                <Paper>
-                  <MenuItemContainer
-                    menuItems={this.state.menuItems}
-                    setMenuItems={this.setMenuItems}
-                  />
-                </Paper>
-              </Grid>
-              <Grid item xs={1} sm={1} />
-            </Grid>
-          </Grid>
-        </div>
+
+              {/* <ReportApp /> */}
+            </div>
+          )}
+        ></AuthenticatedRoute>
       </React.Fragment>
     );
   }

@@ -1,3 +1,4 @@
+// Import react component
 import React, { Component } from "react";
 import EditItem from './editMenuItem';
 import Button from "@material-ui/core/Button";
