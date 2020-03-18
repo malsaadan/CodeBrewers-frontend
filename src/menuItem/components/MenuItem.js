@@ -13,20 +13,28 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Grid } from "@material-ui/core";
 
+import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
+import DetailsOutlinedIcon from "@material-ui/icons/DetailsOutlined";
+
 class MenuItem extends React.Component {
   render() {
     return (
       <Grid item xs={6} sm={4}>
         {/* <div className="menuItem"> */}
         {/* title & content & Author */}
-        <Card>
+        <Card position="static">
           <CardMedia image="./coffee.png" title="Paella dish" />
           <CardContent>
             <Typography>
               <h4>{this.props.name}</h4>
 
-              <sub>{this.props.description}</sub>
-              <p>{this.props.price}</p>
+              <p>
+                <DetailsOutlinedIcon />
+                {this.props.description}
+              </p>
+              <sub>
+                <LocalOfferOutlinedIcon /> {this.props.price} SAR
+              </sub>
             </Typography>
           </CardContent>
 

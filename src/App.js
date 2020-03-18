@@ -96,13 +96,13 @@ class App extends Component {
         <div>
           <Grid container direction="column">
             <Grid item container spacing={2}>
-              <Grid item xs={2} sm={1} />
+              <Grid item xs={0} sm={1} />
               <Grid item xs={11} sm={4}>
                 <Paper>
                   <h1> This is where the orders will be</h1>
                 </Paper>
               </Grid>
-              <Grid item xs={11} sm={6}>
+              <Grid item xs={0} sm={6}>
                 <Paper>
                   <MenuItemContainer
                     menuItems={this.state.menuItems}

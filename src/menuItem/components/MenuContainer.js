@@ -35,25 +35,7 @@ class MenuItemContainer extends React.Component {
         console.log("API ERROR: ", error);
       });
   };
-  // Make an aPI call to delete
-  //   deleteArticle = id => {
-  //     console.log("The Article ID to Delete", id);
 
-  //     deleteArticleByID(id)
-  //       .then(response => {
-  //         console.log(`The article with the ID ${id} has been deleted.`);
-
-  //         const newArticlesList = this.props.articles.filter(article => {
-  //           return article._id !== id;
-  //         });
-
-  //         this.props.setArticles(newArticlesList);
-  //       })
-
-  //       .catch(error => {
-  //         console.log(`API ERROR `, error);
-  //       });
-  //   };
   render() {
     let allMenuItems = <h4>No items!</h4>;
 

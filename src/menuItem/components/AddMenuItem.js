@@ -193,7 +193,7 @@ export class AddMenuItem extends React.Component {
                 label="Price"
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment position="end">SR</InputAdornment>
+                    <InputAdornment position="end">SAR</InputAdornment>
                   )
                 }}
                 id="price"
