@@ -20,19 +20,27 @@ class MenuItem extends React.Component {
   render() {
     return (
       <Grid item xs={6} sm={4}>
-        {/* <div className="menuItem"> */}
-        {/* title & content & Author */}
-        <Card position="static">
-          <CardContent>
+        <Card>
+          <CardContent
+            style={{
+              color: "#4c6873",
+              backgroundColor: "#d9d4cc",
+              padding: "2%"
+            }}
+            onClick={() => {
+              console.log("test");
+              alert(`${this.props.name} Added`);
+            }}
+          >
             <Typography>
               <h4>{this.props.name}</h4>
               <CardMedia image="./coffee.png" title="Paella dish" />
               <CardActionArea>
                 <CardMedia
-                  onClick={() => {
-                    console.log("test");
-                    alert("Item Added");
-                  }}
+                  // onClick={() => {
+                  //   console.log("test");
+                  //   alert("Item Added");
+                  // }}
                   component="img"
                   alt={`Picture of ${this.props.category}`}
                   height="140"
