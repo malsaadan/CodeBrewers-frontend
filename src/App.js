@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.scss";
+import ReportApp from "./report/components/ReportApp";
 import { Route } from "react-router-dom";
-// import MenuContainer from "./menuItem/components2/MenuContainer";
+// import MenuContainer from "./menuItem/components/MenuContainer";
 
 // add the grid from Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -113,6 +114,8 @@ class App extends Component {
               <Grid item xs={1} sm={1} />
             </Grid>
           </Grid>
+
+          {/* <ReportApp /> */}
         </div>
       </React.Fragment>
     );

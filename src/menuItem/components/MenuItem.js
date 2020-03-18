@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./MenuItem.css";
-import Coffee from "./coffee.png";
+import CoffeeLogo from "./coffee.png";
 
 // Import Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -23,35 +23,31 @@ class MenuItem extends React.Component {
         {/* <div className="menuItem"> */}
         {/* title & content & Author */}
         <Card position="static">
-          <CardMedia image="./coffee.png" title="Paella dish" />
           <CardContent>
             <Typography>
               <h4>{this.props.name}</h4>
-
-              <p>
-                <DetailsOutlinedIcon />
-                {this.props.description}
-              </p>
+              <CardMedia image="./coffee.png" title="Paella dish" />
+              <CardActionArea>
+                <CardMedia
+                  onClick={() => {
+                    console.log("test");
+                    alert("Item Added");
+                  }}
+                  component="img"
+                  alt={`Picture of ${this.props.category}`}
+                  height="140"
+                  src={this.props.picture}
+                  title={this.props.category}
+                />
+              </CardActionArea>
+              <p>{this.props.description}</p>
               <sub>
                 <LocalOfferOutlinedIcon /> {this.props.price} SAR
               </sub>
             </Typography>
           </CardContent>
-
-          <CardActionArea>
-            <CardMedia
-              onClick={() => {
-                console.log("test");
-                alert("Item Added");
-              }}
-              component="img"
-              alt={`Picture of ${this.props.category}`}
-              height="140"
-              src={this.props.picture}
-              title={this.props.category}
-            />
-          </CardActionArea>
         </Card>
+
         {/* <img className="img" src={Coffee} /> */}
         {/* <a href="#" onClick={this.deleteArticle}>
           DELETE
