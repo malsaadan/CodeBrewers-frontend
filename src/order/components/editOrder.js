@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
+import EditIcon from '@material-ui/icons/Edit';
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -14,25 +15,18 @@ export  class EditLOrder extends React.Component {
       open: false
     };
   }
-
-
   // A method that is responsible for opening the modal
   handleClickOpen = () => {
     this.setState({
       open: true
     });
   };
-
-
   // A method that is responsible for closing the modal
   handleClose = () => {
     this.setState({
       open: false
     });
   };
-
-
-
   // Handle the text fields' values
   handleTextField = event => {
     const input = event.target;
@@ -43,9 +37,6 @@ export  class EditLOrder extends React.Component {
       });
     }
   };
-
-
-
    // A function to trigger the parent's function to edit the item once the save button clicked
    editOrder = event => {
     this.handleClose();
@@ -56,22 +47,18 @@ export  class EditLOrder extends React.Component {
     // Pass the id and the Order to the grand parent
     this.props.editOrder(this.props.id, order);
   };
-
-
-
-
-
-
   render() {
     return (
       <div>
         <Button
-          variant="outlined"
-          color="primary"
+           variant="contained"
+           color="primary"
+           startIcon={<EditIcon/>}
           onClick={this.handleClickOpen}
         >
           Edit
         </Button>
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -91,12 +78,18 @@ export  class EditLOrder extends React.Component {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button 
+            onClick={this.handleClose} 
+            color="primary">
               Cancel
             </Button>
-            <Button onClick={this.editOrder} color="primary">
+
+            <Button 
+            onClick={this.editOrder} 
+            color="primary">
               Save
             </Button>
+            
           </DialogActions>
         </Dialog>
       </div>

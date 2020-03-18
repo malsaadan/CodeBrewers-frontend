@@ -1,6 +1,9 @@
 import React from 'react';
 import EditOrder from './editOrder';
 import Button from "@material-ui/core/Button";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+
 class Order extends React.Component {
     deleteOrder = (e)=>{
         e.preventDefault();
@@ -19,9 +22,11 @@ class Order extends React.Component {
             discount={this.props.discount} 
             />
 
-            <Button variant="outlined" 
+            <Button 
+            variant="contained"
             color="secondary" 
             style={{"text-transform":"capitalize"}}
+            startIcon={<DeleteIcon />}
             onClick={this.deleteOrder}>Delete 
             </Button>  
             </div>
