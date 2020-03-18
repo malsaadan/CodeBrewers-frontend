@@ -1,4 +1,6 @@
 import React from "react";
+import RadioButtonsGroup from "./radio";
+
 // Material UI
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
@@ -10,7 +12,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
-
 export class AddMenuItem extends React.Component {
   // add constructor
   constructor(props) {
@@ -31,6 +32,9 @@ export class AddMenuItem extends React.Component {
       open: true
     });
   };
+  handleChange = event => {
+    this.setState({ category: event.target.value });
+  };
 
   handleClose = () => {
     this.setState({
@@ -48,6 +52,7 @@ export class AddMenuItem extends React.Component {
       category: this.state.category
     };
 
+    // close the pop-up window after adding the order
     this.handleClose();
 
     // reset text boxes values
@@ -66,7 +71,6 @@ export class AddMenuItem extends React.Component {
   // add Handler the input boxes' values
   handleInputBox = event => {
     const input = event.target;
-    console.log(event);
 
     // If conditions to know which input value has been changed based on class names and set new value in the state
     if (input.className === "name") {
@@ -90,6 +94,12 @@ export class AddMenuItem extends React.Component {
         category: input.value
       });
     }
+  };
+
+  // callback for the category
+  callbackFunction = childData => {
+    console.log(childData);
+    this.setState({ category: childData });
   };
 
   // Handle the text fields' values
@@ -118,67 +128,11 @@ export class AddMenuItem extends React.Component {
       });
     }
   };
+
   render() {
     return (
       <div>
-        {/* <h3>Add a New Item</h3>
-        <label>Name:</label>
-        <input
-          className="name"
-          onChange={this.handleInputBox}
-          value={this.state.name}
-        />
-        <br /> */}
-        {/* // Description input */}
-        {/* <label>Description:</label>
-        <input
-          className="description"
-          onChange={this.handleInputBox}
-          value={this.state.description}
-        />
-        <br /> */}
-        {/* // Price input */}
-        {/* <label>Price:</label>
-        <input
-          className="price"
-          onChange={this.handleInputBox}
-          value={this.state.price}
-        />
-        <br /> */}
-        {/* // Picture input */}
-        {/* <label>Picture:</label>
-        <input
-          className="picture"
-          onChange={this.handleInputBox}
-          value={this.state.picture}
-        />
-        <br /> */}
-        {/* Category input */}
-        {/* <label>Category:</label>
-        <input
-          className="category"
-          onChange={this.handleInputBox}
-          value={this.state.category}
-        />
-        <br /> */}
-        {/* <button onClick={this.addMenuItem}>Add New Item</button> */}
-        {/* <Button
-          onClick={this.addMenuItem}
-          variant="contained"
-          color="primary"
-          component="span"
-          startIcon={<SaveIcon />}
-          size="small"
-        >
-          Add New Item
-        </Button> */}
-
-        {/* <TextField
-          required
-          id="standard-required"
-          label="Required"
-          defaultValue="Name"
-        /> */}
+        {/* The pop-up window to add an item  */}
         <div>
           <Button
             variant="outlined"
@@ -194,6 +148,7 @@ export class AddMenuItem extends React.Component {
           >
             <DialogTitle id="form-dialog-title">Add a new item</DialogTitle>
             <DialogContent>
+              {/* // Name input */}
               <TextField
                 autoFocus
                 margin="dense"
@@ -203,6 +158,7 @@ export class AddMenuItem extends React.Component {
                 onChange={this.handleTextField}
                 value={this.state.name}
               />
+              {/* // Description input */}
               <TextField
                 autoFocus
                 margin="dense"
@@ -212,6 +168,7 @@ export class AddMenuItem extends React.Component {
                 onChange={this.handleTextField}
                 value={this.state.description}
               />
+              {/* // Price input */}
               <TextField
                 autoFocus
                 margin="dense"
@@ -227,6 +184,7 @@ export class AddMenuItem extends React.Component {
                 onChange={this.handleTextField}
                 value={this.state.price}
               />
+              {/* // Picture input */}
               <TextField
                 autoFocus
                 margin="dense"
@@ -236,16 +194,16 @@ export class AddMenuItem extends React.Component {
                 onChange={this.handleTextField}
                 value={this.state.picture}
               />
-              <TextField
-                autoFocus
-                margin="dense"
-                label="Category"
+
+              {/* The radio buttons for the category  */}
+              <RadioButtonsGroup
                 id="category"
-                fullWidth
-                onChange={this.handleTextField}
                 value={this.state.category}
+                handleChange={this.handleChange}
+                // parentCallback={this.callbackFunction}
               />
             </DialogContent>
+
             <DialogActions>
               <Button onClick={this.handleClose} color="primary">
                 Cancel
