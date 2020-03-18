@@ -84,38 +84,37 @@ class App extends Component {
         </main>
         {/* <MenuCont></MenuCont> */}
         {/* ######## The Content of the Page #############files // add the grid  to the page */}
-
         {/* Return all components for the home page */}
-        <AuthenticatedRoute
+        {/* <AuthenticatedRoute
           user={user}
           path="/"
-          render={() => (
-            <div>
-              <Grid container direction="column">
-                <Grid item container spacing={2}>
-                  <Grid item xs={0} sm={1} />
-                  <Grid item xs={11} sm={4}>
-                    <Paper>
-                      <h1> This is where the orders will be</h1>
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={0} sm={6}>
-                    <Paper>
-                      {/* adding the menu container components  */}
-                      <MenuItemContainer
-                        menuItems={this.state.menuItems}
-                        setMenuItems={this.setMenuItems}
-                      />
-                    </Paper>
-                  </Grid>
-                  <Grid item xs={1} sm={1} />
-                </Grid>
+          render={() => ( */}
+        <div>
+          <Grid container direction="column">
+            <Grid item container spacing={2}>
+              <Grid item xs={0} sm={1} />
+              <Grid item xs={11} sm={4}>
+                <Paper>
+                  <h1> This is where the orders will be</h1>
+                </Paper>
               </Grid>
+              <Grid item xs={0} sm={6}>
+                <Paper>
+                  {/* adding the menu container components  */}
+                  <MenuItemContainer
+                    menuItems={this.state.menuItems}
+                    setMenuItems={this.setMenuItems}
+                  />
+                </Paper>
+              </Grid>
+              <Grid item xs={1} sm={1} />
+            </Grid>
+          </Grid>
 
-              {/* <ReportApp /> */}
-            </div>
-          )}
-        ></AuthenticatedRoute>
+          {/* <ReportApp /> */}
+        </div>
+        )}
+        {/* ></AuthenticatedRoute> */}
       </React.Fragment>
     );
   }
