@@ -1,8 +1,4 @@
-import React from "react";
-import MenuItem from "../components/MenuItem";
-import { getAllMenuItems, addNewMenuItem } from "../api";
-import { Grid } from "@material-ui/core";
-
+import React, { Component } from "react";
 import "./MenuItem.css";
 
 // import add menu Item
@@ -34,29 +30,63 @@ class MenuItemContainer extends React.Component {
       .catch(error => {
         console.log("API ERROR: ", error);
       });
+import Coffee from "./coffee.png";
+
+import EditItem from "./editMenuItem";
+
+// Import Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardActions from "@material-ui/core/CardActions";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import { Grid } from "@material-ui/core";
+
+class MenuItem extends React.Component {
+  // Handle on click event and pass the id of the current menu item to the parent's function to delete this specific menu item
+  deleteMenuItem = event => {
+    this.props.deleteMenuItem(this.props.id);
   };
 
   render() {
-    let allMenuItems = <h4>No items!</h4>;
+    return (
+      <Grid item xs={6} sm={4}>
+        {/* <div className="menuItem"> */}
+        {/* title & content & Author */}
+        <Card>
+          <CardMedia image="./coffee.png" title="Paella dish" />
+          <CardContent>
+            <Typography>
+              <h4>{this.props.name}</h4>
 
-    if (this.props.menuItems.length > 0) {
-      console.log("length");
-      allMenuItems = this.props.menuItems.map((menuItem, index) => {
-        return (
-          // add the grid to each item
-
-          // <Grid item xs={4} sm={4}>
-
-          <MenuItem
-            name={menuItem.name}
-            description={menuItem.description}
-            price={menuItem.price}
-            picture={menuItem.picture}
-            category={menuItem.category}
-            id={menuItem._id}
-            // deleteArticle={this.deleteArticle}
-            // addArticle={this.addArticles}
-            key={index}
+              <sub>{this.props.description}</sub>
+              <p>{this.props.price}</p>
+            </Typography>
+          </CardContent>
+          <CardActionArea>
+            <CardMedia
+              onClick={() => {
+                console.log("test");
+                alert("Item Added");
+              }}
+              component="img"
+              alt="Coffee"
+              height="140"
+              src={this.props.picture}
+              title={this.props.category}
+            />
+          </CardActionArea>
+          <EditItem
+            id={this.props.id}
+            editItem={this.props.editItem}
+            name={this.props.name}
+            description={this.props.description}
+            price={this.props.price}
+            picture={this.props.picture}
+            category={this.props.category}
           />
 
           // </Grid>
@@ -78,8 +108,18 @@ class MenuItemContainer extends React.Component {
           This is a test for using the famous library Material UI{" "}
         </Button> */}
       </div>
+          <Button
+            style={{ "text-transform": "capitalize" }}
+            variant="outlined"
+            color="secondary"
+            onClick={this.deleteMenuItem}
+          >
+            Delete
+          </Button>
+        </Card>
+      </Grid>
     );
   }
 }
 
-export default MenuItemContainer;
+export default MenuItem;

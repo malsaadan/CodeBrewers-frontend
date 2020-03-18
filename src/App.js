@@ -20,6 +20,22 @@ import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
 
+import MenuItemContainer from "./menuItem/components/MenuContainer";
+import OrderList from './order/components/orderList';
+
+
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  }
+}));
+
 class App extends Component {
   constructor() {
     super();
@@ -27,21 +43,33 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      menuItems: []
+      menuItems: [],
+      orders:[]
     };
   }
 
+
+
   setUser = user => this.setState({ user });
-
   clearUser = () => this.setState({ user: null });
-
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] });
   };
 
+  setOrders = (orders) => {
+    console.log(`UPDATED`)
+    this.setState({ orders: [...this.state.orders] });
+    console.log(`WHAT HAPPEN M8`,this.state.orders.name)
+  }
+
+
+
   setMenuItems = menuItems => {
     this.setState({ menuItems: menuItems });
   };
+
+
+
 
   render() {
     const { alerts, user } = this.state;
@@ -82,6 +110,21 @@ class App extends Component {
             render={() => <ChangePassword alert={this.alert} user={user} />}
           />
         </main>
+<>
+        <MenuItemContainer
+        orders={this.state.orders} 
+        setOrders={this.setOrders}
+        menuItems={this.state.menuItems}
+        setMenuItems={this.setMenuItems}
+        />
+
+        <OrderList 
+        orders={this.state.orders} 
+         setOrders={this.setOrders}
+        setMenuItems={this.setMenuItems}
+        menuItems={this.state.menuItems} />
+        </>
+        
         {/* <MenuCont></MenuCont> */}
         {/* ######## The Content of the Page #############files // add the grid  to the page */}
 
