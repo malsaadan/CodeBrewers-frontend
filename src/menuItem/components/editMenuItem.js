@@ -6,6 +6,9 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import EditIcon from "@material-ui/icons/Edit";
+
+import RadioButtonsGroup from "./radio";
 
 export default class EditItem extends React.Component {
   constructor(props) {
@@ -62,8 +65,8 @@ export default class EditItem extends React.Component {
     }
   };
 
-   // A function to trigger the parent's function to edit the item once the save button clicked
-   editItem = event => {
+  // A function to trigger the parent's function to edit the item once the save button clicked
+  editItem = event => {
     this.handleClose();
 
     // Create a new item object with the updated values
@@ -79,11 +82,30 @@ export default class EditItem extends React.Component {
     this.props.editItem(this.props.id, menuItem);
   };
 
+  // callback for the category
+  callbackFunction = childData => {
+    console.log(childData);
+    this.setState({ category: childData });
+  };
+
+  // handle change event method for the radio buttons
+  handleChange = event => {
+    this.setState({ category: event.target.value });
+  };
+
   render() {
     return (
       <div>
         <Button
-          variant="outlined"
+          style={{
+            color: "#4c6873",
+            backgroundColor: "#d9d4cc",
+            margin: "2%",
+            fontFamily: "Ubuntu",
+            fontWeight: "bold"
+          }}
+          startIcon={<EditIcon />}
+          variant="contained"
           color="primary"
           onClick={this.handleClickOpen}
         >
@@ -137,7 +159,7 @@ export default class EditItem extends React.Component {
               onChange={this.handleTextField}
               value={this.state.picture}
             />
-            <TextField
+            {/* <TextField
               autoFocus
               margin="dense"
               label="Category"
@@ -145,6 +167,12 @@ export default class EditItem extends React.Component {
               fullWidth
               onChange={this.handleTextField}
               value={this.state.category}
+            /> */}
+            <RadioButtonsGroup
+              id="category"
+              value={this.state.category}
+              handleChange={this.handleChange}
+              // parentCallback={this.callbackFunction}
             />
           </DialogContent>
           <DialogActions>

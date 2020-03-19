@@ -1,122 +1,111 @@
-import React from 'react';
-import Order from './order';
-import {getAllOrders} from '../api'
-import {getAllMenuItems} from '../../menuItem/api'
+import React from "react";
+import Order from "./order";
+import { getAllOrders } from "../api";
+import { getAllMenuItems } from "../../menuItem/api";
+import EditOrder from "./editOrder";
 class OrderList extends React.Component {
-      constructor (props) {
-          super(props) ; 
+  componentDidMount() {
+    getAllMenuItems()
+      .then(res => {
+        this.props.setMenuItems(res.data.menuItems);
+      })
+      .catch(err => {
+        console.log("API ERROR:", err);
+      });
+  }
 
-          
+  // to edit an Order
+  editOrder = (id, updatedOrder) => {
+    console.log(`Edit the order`);
+
+    // // Make axios request
+    // editOrderByID(id, updatedOrder)
+    //   .then(response => {
+    //     console.log(
+    //       `The menu Order with the ID ${id} has been updated successfully.`
+    //     );
+
+    // To update the list in the UI
+    const orders = this.props.orders;
+    orders.forEach((order, index) => {
+      if (order._id === id) {
+        orders[index].discount = updatedOrder.discount;
       }
-    componentDidMount(){
-      getAllMenuItems()
-        .then((res)=> {
-       this.props.setMenuItems(res.data.menuItems)
-        })
-        .catch((err)=>{
-            console.log('API ERROR:',err);
-        })
-    }
+      // });
 
+      // Update the Order list in the parent to the new list we have just edited
+      this.props.setOrders(orders);
+    });
+    // .catch(error => {
+    //   console.log(error);
+    // });
+  };
 
+  handleRemoveEvent = event => {
+    const itemIndex = this.props.orders.indexOf(event);
+    const OrderList = this.props.orders.splice(itemIndex, 1);
+    console.log(`Removing`);
+    this.props.setOrders(OrderList);
+    // console.log(orders)
+  };
 
-render() { 
-    
+  //  // Make an API call to Delete an Order
+  //      deleteOrder = (id)=>{
+  //          console.log("The Order ID to Delete ", id)
+  //          deleteOrderByID(id)
+  //          .then((res) => {
+  //  console.log(`The Order with the ID ${id} has been deleted .`)
+  //  // Filter the array to remove the deleted order
+  //  const newOrderList = this.props.orders.filter((order)=>{
+  //      return order._id !== id ;
+  //  })
+  //   // Update the Order list in the parent's state
+  //  this.props.setOrders(newOrderList);
+  //          })
+  //          .catch((err)=> {
+  //  console.log('API ERROR :',err)
+  //          })
 
+  //      }
 
-//for the orders 
-let AllOrders = <h4>No Orders!</h4>;
-if(this.props.orders.length > 0)
-{
-AllOrders = this.props.orders.map((order,index)=>{
-return <Order  id = {order._id}
-               totalPrice = {order.price}
-               discount = {order.name}
-               key = {index}/>
-});
-}
+  render() {
+    //for the orders
+    let AllOrders = <h4>No Orders!</h4>;
 
-
-
-    let allMenuItemsForOrder = <h4>No order!</h4>;
-    // If there are items in the list then display them
-    if (this.props.menuItems.length > 0) {
-      console.log("length");
-      // for the items ... 
-      allMenuItemsForOrder = this.props.menuItems.map((menuItem, index) => {
+    if (this.props.orders.length > 0) {
+      AllOrders = this.props.orders.map((order, index) => {
         return (
           <Order
-            name={menuItem.name}
-            description={menuItem.description}
-            price={menuItem.price}
-            picture={menuItem.picture}
-            category={menuItem.category}
-            id={menuItem._id}
-            deleteMenuItem={this.deleteMenuItem}
-            editItem = {this.editMenuItem}
+            id={order._id}
+            totalPrice={order.price}
+            itemName={order.name}
             key={index}
+            handleRemoveEvent={this.handleRemoveEvent}
           />
         );
       });
     }
-        return ( 
-            <>
-            <h3>All Orders</h3>
-             {AllOrders}
-            </>
-         );
-    }
+
+    let price = 0;
+    const total = this.props.orders.map((order, index) => {
+      const num = parseFloat(order.price);
+      price = price + num;
+      return price;
+    });
+
+    return (
+      <div style={{ margin: "3%" }}>
+        <h3>All Orders</h3>
+        {AllOrders}
+
+        <EditOrder
+          id={this.props.id}
+          editOrder={this.editOrder}
+          discount={this.props.discount}
+        />
+        <h2>Total : {price} </h2>
+      </div>
+    );
+  }
 }
 export default OrderList;
-
-// DELETE 
-
-
-
-/*** FUNCTIONS ***/
-
-// total 
-// sum n amount of numbers .. 
-/*** 
- * 
- * var n = 5 ; 
-var res = (n * (n+1)) / 2
-==========================================
-function numberSum(N) {
-  var total = 0;
-    for(var i = 1; i <= N; i++){
-      total += i;
-    }
-    return total;
-} 
-=========================================
-using for each ... ???
-
-example : 
-function Counter() {
-  this.sum = 0
-  this.count = 0
-}
-Counter.prototype.add = function(array) {
-  array.forEach((entry) => {
-    this.sum += entry
-    ++this.count
-  }, this)
-  // ^---- Note
-}
-
-const obj = new Counter()
-obj.add([2, 5, 9])
-obj.count
-// 3 
-obj.sum
-// 16
-
-=========================================== 
-
- * 
- * 
- * 
- * ***/
-// Edit the amount delete using slice ... 
-// 

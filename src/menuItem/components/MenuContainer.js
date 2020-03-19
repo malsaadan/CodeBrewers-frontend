@@ -1,4 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
+import MenuItem from "../components/MenuItem";
+import {
+  getAllMenuItems,
+  addNewMenuItem,
+  editMenuItemByID,
+  deleteMenuItemByID,
+  getMenuItemsByID
+} from "../api";
+import { Grid } from "@material-ui/core";
+
 import "./MenuItem.css";
 
 // import add menu Item
@@ -13,6 +23,61 @@ class MenuItemContainer extends React.Component {
         console.log("API ERROR:", error);
       });
   }
+
+  // Make an API Call to Delete an Article
+  deleteMenuItem = id => {
+    console.log("The MenuItem ID to Delete", id);
+
+    // Make axios delete request
+    deleteMenuItemByID(id)
+      .then(response => {
+        console.log(`The MenuItem with the ID ${id} has been deleted.`);
+
+        // Filter the array to remove the deleted items
+        const newMenuItemsList = this.props.menuItems.filter(item => {
+          return item._id !== id;
+        });
+
+        // Update the item list in the parent's state
+        this.props.setMenuItems(newMenuItemsList);
+      })
+
+      .catch(error => {
+        console.log("API ERROR:", error);
+      });
+  };
+
+  editMenuItem = (id, updatedItem) => {
+    console.log(`Edit the menu item with ID ${id}`);
+
+    // Make axios request
+    editMenuItemByID(id, updatedItem)
+      .then(response => {
+        console.log(
+          `The menu item with the ID ${id} has been updated successfully.`
+        );
+
+        // To update the list in the UI, I searched for the updated item in the menu items list and then update its properties
+        const menuItems = this.props.menuItems;
+
+        menuItems.forEach((item, index) => {
+          if (item._id === id) {
+            menuItems[index].name = updatedItem.name;
+            menuItems[index].description = updatedItem.description;
+            menuItems[index].price = updatedItem.price;
+            menuItems[index].picture = updatedItem.picture;
+            menuItems[index].category = updatedItem.category;
+          }
+        });
+
+        // Update the menu items list in the parent to the new list we have just edited
+        this.props.setMenuItems(menuItems);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   // Make an API call to add function
   addMenuItem = menuItem => {
     // Make an axios request
@@ -30,63 +95,51 @@ class MenuItemContainer extends React.Component {
       .catch(error => {
         console.log("API ERROR: ", error);
       });
-import Coffee from "./coffee.png";
+  };
 
-import EditItem from "./editMenuItem";
-
-// Import Material UI
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import { Grid } from "@material-ui/core";
-
-class MenuItem extends React.Component {
-  // Handle on click event and pass the id of the current menu item to the parent's function to delete this specific menu item
-  deleteMenuItem = event => {
-    this.props.deleteMenuItem(this.props.id);
+  // Adding to the orders array to pass it to his brother
+  addItemToOrder = id => {
+    getMenuItemsByID(id)
+      .then(response => {
+        console.log(`Step number one .. just a console `);
+        const res = response.data.menuItem;
+        console.log(res, "<==== res ");
+        const orderList = this.props.orders.push(res);
+        console.log(id, "<==== ID ");
+        console.log(this.props.orders);
+        console.log(orderList, `From menu`);
+        this.props.setOrders(orderList);
+        console.log(orderList, `From menu`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
-    return (
-      <Grid item xs={6} sm={4}>
-        {/* <div className="menuItem"> */}
-        {/* title & content & Author */}
-        <Card>
-          <CardMedia image="./coffee.png" title="Paella dish" />
-          <CardContent>
-            <Typography>
-              <h4>{this.props.name}</h4>
+    let allMenuItems = <h4>No items!</h4>;
 
-              <sub>{this.props.description}</sub>
-              <p>{this.props.price}</p>
-            </Typography>
-          </CardContent>
-          <CardActionArea>
-            <CardMedia
-              onClick={() => {
-                console.log("test");
-                alert("Item Added");
-              }}
-              component="img"
-              alt="Coffee"
-              height="140"
-              src={this.props.picture}
-              title={this.props.category}
-            />
-          </CardActionArea>
-          <EditItem
-            id={this.props.id}
-            editItem={this.props.editItem}
-            name={this.props.name}
-            description={this.props.description}
-            price={this.props.price}
-            picture={this.props.picture}
-            category={this.props.category}
+    if (this.props.menuItems.length > 0) {
+      console.log("length");
+      allMenuItems = this.props.menuItems.map((menuItem, index) => {
+        return (
+          // add the grid to each item
+
+          // <Grid item xs={4} sm={4}>
+
+          <MenuItem
+            name={menuItem.name}
+            description={menuItem.description}
+            price={menuItem.price}
+            picture={menuItem.picture}
+            category={menuItem.category}
+            id={menuItem._id}
+            deleteMenuItem={this.deleteMenuItem}
+            editItem={this.editMenuItem}
+            addItemToOrder={this.addItemToOrder}
+            // deleteArticle={this.deleteArticle}
+            // addArticle={this.addArticles}
+            key={index}
           />
 
           // </Grid>
@@ -108,18 +161,8 @@ class MenuItem extends React.Component {
           This is a test for using the famous library Material UI{" "}
         </Button> */}
       </div>
-          <Button
-            style={{ "text-transform": "capitalize" }}
-            variant="outlined"
-            color="secondary"
-            onClick={this.deleteMenuItem}
-          >
-            Delete
-          </Button>
-        </Card>
-      </Grid>
     );
   }
 }
 
-export default MenuItem;
+export default MenuItemContainer;

@@ -153,7 +153,8 @@ export class AddMenuItem extends React.Component {
               backgroundColor: "#d9d4cc",
               margin: "2%",
               fontFamily: "Ubuntu",
-              fontWeight: "bold"
+              fontWeight: "bold",
+              "text-transform": "capitalize"
             }}
           >
             Add Item
