@@ -4,7 +4,8 @@ import {
   getAllMenuItems,
   addNewMenuItem,
   editMenuItemByID,
-  deleteMenuItemByID
+  deleteMenuItemByID,
+  getMenuItemsByID
 } from "../api";
 import { Grid } from "@material-ui/core";
 
@@ -13,6 +14,16 @@ import "./MenuItem.css";
 // import add menu Item
 import AddMenuItem from "./AddMenuItem";
 class MenuItemContainer extends React.Component {
+  componentDidMount() {
+    getAllMenuItems()
+      .then(response => {
+        this.props.setMenuItems(response.data.menuItems);
+      })
+      .catch(error => {
+        console.log("API ERROR:", error);
+      });
+  }
+
   // Make an API Call to Delete an Article
   deleteMenuItem = id => {
     console.log("The MenuItem ID to Delete", id);
@@ -67,15 +78,6 @@ class MenuItemContainer extends React.Component {
       });
   };
 
-  componentDidMount() {
-    getAllMenuItems()
-      .then(response => {
-        this.props.setMenuItems(response.data.menuItems);
-      })
-      .catch(error => {
-        console.log("API ERROR:", error);
-      });
-  }
   // Make an API call to add function
   addMenuItem = menuItem => {
     // Make an axios request
@@ -92,6 +94,25 @@ class MenuItemContainer extends React.Component {
       })
       .catch(error => {
         console.log("API ERROR: ", error);
+      });
+  };
+
+  // Adding to the orders array to pass it to his brother
+  addItemToOrder = id => {
+    getMenuItemsByID(id)
+      .then(response => {
+        console.log(`Step number one .. just a console `);
+        const res = response.data.menuItem;
+        console.log(res, "<==== res ");
+        const orderList = this.props.orders.push(res);
+        console.log(id, "<==== ID ");
+        console.log(this.props.orders);
+        console.log(orderList, `From menu`);
+        this.props.setOrders(orderList);
+        console.log(orderList, `From menu`);
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 
@@ -115,6 +136,7 @@ class MenuItemContainer extends React.Component {
             id={menuItem._id}
             deleteMenuItem={this.deleteMenuItem}
             editItem={this.editMenuItem}
+            addItemToOrder={this.addItemToOrder}
             // deleteArticle={this.deleteArticle}
             // addArticle={this.addArticles}
             key={index}

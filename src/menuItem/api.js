@@ -25,3 +25,8 @@ export const editMenuItemByID = (id, menuItem) => {
   // Add the id in the params to edit a specific article and pass the new article as object
   return axios.patch(`${apiUrl}/api/menu-items/${id}`, { menuItem });
 };
+
+// get menu item by id
+export const getMenuItemsByID = id => {
+  return axios.get(`${apiUrl}/api/menu-items/${id}`);
+};

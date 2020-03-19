@@ -170,7 +170,6 @@ export default class EditItem extends React.Component {
             /> */}
             <RadioButtonsGroup
               id="category"
-              checked="true"
               value={this.state.category}
               handleChange={this.handleChange}
               // parentCallback={this.callbackFunction}

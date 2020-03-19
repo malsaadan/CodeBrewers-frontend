@@ -1,19 +1,19 @@
 import React from "react";
 import Order from "./order";
-import {getAllOrders} from '../api'
+import { getAllOrders } from "../api";
 import { getAllMenuItems } from "../../menuItem/api";
-import EditOrder from './editOrder';
+import EditOrder from "./editOrder";
 class OrderList extends React.Component {
-   componentDidMount(){
-      getAllMenuItems()
-        .then((res)=> {
-       this.props.setMenuItems(res.data.menuItems)
-        })
-        .catch((err)=>{
-            console.log('API ERROR:',err);
-        })
-    }
- 
+  componentDidMount() {
+    getAllMenuItems()
+      .then(res => {
+        this.props.setMenuItems(res.data.menuItems);
+      })
+      .catch(err => {
+        console.log("API ERROR:", err);
+      });
+  }
+
   // to edit an Order
   editOrder = (id, updatedOrder) => {
     console.log(`Edit the order`);
@@ -41,15 +41,14 @@ class OrderList extends React.Component {
     // });
   };
 
-  handleRemoveEvent = (event) => {
-    const itemIndex = this.props.orders.indexOf(event); 
-    const OrderList=this.props.orders.splice(itemIndex,1)
-    console.log (`Removing`) 
-    this.props.setOrders(OrderList)
-    // console.log(orders) 
-  }
+  handleRemoveEvent = event => {
+    const itemIndex = this.props.orders.indexOf(event);
+    const OrderList = this.props.orders.splice(itemIndex, 1);
+    console.log(`Removing`);
+    this.props.setOrders(OrderList);
+    // console.log(orders)
+  };
 
-  
   //  // Make an API call to Delete an Order
   //      deleteOrder = (id)=>{
   //          console.log("The Order ID to Delete ", id)
@@ -72,31 +71,41 @@ class OrderList extends React.Component {
   render() {
     //for the orders
     let AllOrders = <h4>No Orders!</h4>;
+
     if (this.props.orders.length > 0) {
       AllOrders = this.props.orders.map((order, index) => {
-        return <Order
+        return (
+          <Order
             id={order._id}
             totalPrice={order.price}
-            itemName ={order.name}
+            itemName={order.name}
             key={index}
-            handleRemoveEvent = {this.handleRemoveEvent}
+            handleRemoveEvent={this.handleRemoveEvent}
           />
+        );
       });
-    } 
-   
-        return ( 
-            <>
-            <h3>All Orders</h3>
-             {AllOrders}
-
-             <EditOrder
-            id={this.props.id} 
-            editOrder={this.editOrder} 
-            discount={this.props.discount} 
-            />
-  
-            </>
-         );
     }
+
+    let price = 0;
+    const total = this.props.orders.map((order, index) => {
+      const num = parseFloat(order.price);
+      price = price + num;
+      return price;
+    });
+
+    return (
+      <div style={{ margin: "3%" }}>
+        <h3>All Orders</h3>
+        {AllOrders}
+
+        <EditOrder
+          id={this.props.id}
+          editOrder={this.editOrder}
+          discount={this.props.discount}
+        />
+        <h2>Total : {price} </h2>
+      </div>
+    );
+  }
 }
 export default OrderList;

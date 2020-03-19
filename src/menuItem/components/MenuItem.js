@@ -22,9 +22,10 @@ class MenuItem extends React.Component {
     this.props.deleteMenuItem(this.props.id);
   };
 
-  // addToOrder = event => {
-  //   this.props.addItemToOrder(this.props.id);
-  // };
+  // handler for the add an item to the order
+  addToOrder = event => {
+    this.props.addItemToOrder(this.props.id);
+  };
   render() {
     return (
       // put the Grid for the layout
@@ -38,12 +39,16 @@ class MenuItem extends React.Component {
               backgroundColor: "#d9d4cc",
               padding: "2%"
             }}
+            onClick={this.addToOrder}
             // execute the function once item is clicked
-            onClick={() => {
-              console.log("test");
-              // pass the name of the item
-              alert(`${this.props.name} Added`);
-            }}
+            // onClick={() => {
+            //   console.log("test");
+            //   // pass the name of the item
+            //   {
+            //     this.addToOrder;
+            //   }
+            //   alert(`${this.props.name} Added`);
+            // }}
           >
             <Typography>
               <h4>{this.props.name}</h4>
