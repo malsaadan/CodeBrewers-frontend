@@ -74,35 +74,10 @@ export class AddMenuItem extends React.Component {
 
     // Pass the menu item object to the parent
     this.props.addMenuItem(menuItem);
+    console.log("Item has been added!")
   };
 
-  // add Handler the input boxes' values
-  handleInputBox = event => {
-    const input = event.target;
 
-    // If conditions to know which input value has been changed based on class names and set new value in the state
-    if (input.className === "name") {
-      this.setState({
-        name: input.value
-      });
-    } else if (input.className === "description") {
-      this.setState({
-        description: input.value
-      });
-    } else if (input.className === "price") {
-      this.setState({
-        price: input.value
-      });
-    } else if (input.className === "picture") {
-      this.setState({
-        picture: input.value
-      });
-    } else {
-      this.setState({
-        category: input.value
-      });
-    }
-  };
 
   // callback for the category
   callbackFunction = childData => {

@@ -110,14 +110,3 @@ const Header = ({ user }) => (
 );
 
 export default Header;
-  <header className="main-header">
-    <img src={require('./logo.png')} alt="Logo"/>
-    <nav>
-      { user && <span>Welcome, {user.email}</span>}
-      { user ? authenticatedOptions : unauthenticatedOptions }
-      { alwaysOptions }
-    </nav>
-  </header>
-)
-
-export default Header

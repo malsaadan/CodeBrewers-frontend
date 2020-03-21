@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import React, { Component } from 'react'
 import Alert from 'react-bootstrap/Alert'
 
