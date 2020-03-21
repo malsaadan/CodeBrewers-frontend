@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/CodeBrewers-frontend/static/css/main.b6f9abe6.chunk.css",
-    "main.js": "/CodeBrewers-frontend/static/js/main.40a876d9.chunk.js",
-    "main.js.map": "/CodeBrewers-frontend/static/js/main.40a876d9.chunk.js.map",
+    "main.css": "/CodeBrewers-frontend/static/css/main.08378c40.chunk.css",
+    "main.js": "/CodeBrewers-frontend/static/js/main.71518da8.chunk.js",
+    "main.js.map": "/CodeBrewers-frontend/static/js/main.71518da8.chunk.js.map",
     "runtime-main.js": "/CodeBrewers-frontend/static/js/runtime-main.37c02413.js",
     "runtime-main.js.map": "/CodeBrewers-frontend/static/js/runtime-main.37c02413.js.map",
     "static/css/2.de424728.chunk.css": "/CodeBrewers-frontend/static/css/2.de424728.chunk.css",
-    "static/js/2.6e43f01f.chunk.js": "/CodeBrewers-frontend/static/js/2.6e43f01f.chunk.js",
-    "static/js/2.6e43f01f.chunk.js.map": "/CodeBrewers-frontend/static/js/2.6e43f01f.chunk.js.map",
+    "static/js/2.51ff8db7.chunk.js": "/CodeBrewers-frontend/static/js/2.51ff8db7.chunk.js",
+    "static/js/2.51ff8db7.chunk.js.map": "/CodeBrewers-frontend/static/js/2.51ff8db7.chunk.js.map",
     "index.html": "/CodeBrewers-frontend/index.html",
-    "precache-manifest.617a1e9378c4d30bf1ae8159d1f6d9ca.js": "/CodeBrewers-frontend/precache-manifest.617a1e9378c4d30bf1ae8159d1f6d9ca.js",
+    "precache-manifest.6bc889f653ebdd67b48c74e532cc9a73.js": "/CodeBrewers-frontend/precache-manifest.6bc889f653ebdd67b48c74e532cc9a73.js",
     "service-worker.js": "/CodeBrewers-frontend/service-worker.js",
     "static/css/2.de424728.chunk.css.map": "/CodeBrewers-frontend/static/css/2.de424728.chunk.css.map",
-    "static/css/main.b6f9abe6.chunk.css.map": "/CodeBrewers-frontend/static/css/main.b6f9abe6.chunk.css.map",
-    "static/js/2.6e43f01f.chunk.js.LICENSE.txt": "/CodeBrewers-frontend/static/js/2.6e43f01f.chunk.js.LICENSE.txt",
-    "static/media/coffee.png": "/CodeBrewers-frontend/static/media/coffee.5867d789.png"
+    "static/css/main.08378c40.chunk.css.map": "/CodeBrewers-frontend/static/css/main.08378c40.chunk.css.map",
+    "static/js/2.51ff8db7.chunk.js.LICENSE.txt": "/CodeBrewers-frontend/static/js/2.51ff8db7.chunk.js.LICENSE.txt",
+    "static/media/logo.png": "/CodeBrewers-frontend/static/media/logo.d6f8bd25.png"
   },
   "entrypoints": [
     "static/js/runtime-main.37c02413.js",
     "static/css/2.de424728.chunk.css",
-    "static/js/2.6e43f01f.chunk.js",
-    "static/css/main.b6f9abe6.chunk.css",
-    "static/js/main.40a876d9.chunk.js"
+    "static/js/2.51ff8db7.chunk.js",
+    "static/css/main.08378c40.chunk.css",
+    "static/js/main.71518da8.chunk.js"
   ]
 }
